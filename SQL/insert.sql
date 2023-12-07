@@ -62,4 +62,4 @@ INSERT INTO produit (libelle_prod, prix_achat_fourn, prix_vente_ht, description,
 
 INSERT INTO produit (libelle_prod, prix_achat_fourn, prix_vente_ht, description, id_cat) VALUES 
 ('Arctic P12 PWM PST black Value Pack 120mm', 15, 25,'a', 10),
-('Corsair iCUE Link QX120 RGB 120mm', 90, 120,'a', 10);
+('Corsair iCUE Link QX120 RGB 120mm', 90, 120,'abc', 10);
