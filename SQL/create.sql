@@ -35,7 +35,7 @@ CREATE TABLE ss_cat(
    id_ss_cat INT AUTO_INCREMENT,
    libel_ss_cat VARCHAR(50),
    img_ss_cat VARCHAR(50),
-   id_cat INT NOT NULL,
+   id_cat INT,
    PRIMARY KEY(id_ss_cat),
    FOREIGN KEY(id_cat) REFERENCES categorie(id_cat)
 );
@@ -43,12 +43,12 @@ CREATE TABLE ss_cat(
 CREATE TABLE produit(
    id_prod INT AUTO_INCREMENT,
    img_prod VARCHAR(50),
-   libel_prod VARCHAR(50) NOT NULL,
+   libel_prod VARCHAR(100) NOT NULL,
    prix_achat_fourn DECIMAL(10,2) NOT NULL,
    prix_vente_ht DECIMAL(10,2) NOT NULL,
    description VARCHAR(200),
-   id_ss_cat INT,
    id_fab INT,
+   id_ss_cat INT,
    PRIMARY KEY(id_prod),
    FOREIGN KEY(id_fab) REFERENCES fabricant(id_fab),
    FOREIGN KEY(id_ss_cat) REFERENCES ss_cat(id_ss_cat)
