@@ -29,6 +29,8 @@ INSERT INTO ss_cat (libel_ss_cat, id_cat) VALUES ('Souris', 3); --15
 
 INSERT INTO produit (libel_prod, prix_achat_fourn, prix_vente_ht, description, id_ss_cat) VALUES
 ('Le vortex', 800, 1000, 'PC AMD Gamer ultime 1440p : CPU Ryzen 5800X3D, GPU AMD 6800XT, 16Go ddr4 Ram 3600cl36, SSD 1To Samsung', 1);
+INSERT INTO produit (libel_prod, prix_achat_fourn, prix_vente_ht, description, id_ss_cat) VALUES
+('Orion', 3800, 4200, 'PC Intel/Nvidia spécial montage 3D : I5 14900k, NVIDIA RTX 4090 24GO, 64Go Ram, SSD 2To Nvme + 8To sata', 2);
 
 INSERT INTO produit (libel_prod, prix_achat_fourn, prix_vente_ht, description, id_fab, id_ss_cat) VALUES
 ('RX 6700XT', 235, 290,'AMD RX 6700XT 12GO pour le gaming en 1080/1440p', 1, 3),
