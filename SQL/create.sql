@@ -86,7 +86,7 @@ CREATE TABLE facture(
    prix_ht DECIMAL(6,2) NOT NULL,
    date_emi DATE NOT NULL,
    taux_tva DECIMAL(2,2) NOT NULL,
-   prix_total DECIMAL(6,2) NOT NULL,
+   prix_tot DECIMAL(6,2) NOT NULL,
    id_com INT NOT NULL,
    PRIMARY KEY(id_fact),
    FOREIGN KEY(id_com) REFERENCES commande(id_com)

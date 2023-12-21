@@ -1,6 +1,9 @@
 -- categorie : Composants / périphériques / ordinateurs
 -- ss_cat 1 : Cartes graphiques / cartes mères / processeurs / etc ...
 
+INSERT INTO utilisateurs (id_util, cli_nom, cli_prenom, role, util_mdp) 
+VALUES (1, 'cli-1-nom', 'cli-1-prenom', 1, '1234'), (2, 'emp-Nom', 'emp-prenom', 2, '4321'); 
+
 INSERT INTO fabricant (id_fab, nom_fab) VALUES (1, 'AMD'); 
 INSERT INTO fabricant (id_fab, nom_fab) VALUES (2, 'NVIDIA'); 
 INSERT INTO fabricant (id_fab, nom_fab) VALUES (3, 'INTEL'); 
