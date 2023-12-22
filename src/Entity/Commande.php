@@ -23,6 +23,10 @@ class Commande
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $total_com = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateurs $utilisateurs = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Commande
     public function setTotalCom(string $total_com): static
     {
         $this->total_com = $total_com;
+
+        return $this;
+    }
+
+    public function getUtilisateurs(): ?Utilisateurs
+    {
+        return $this->utilisateurs;
+    }
+
+    public function setUtilisateurs(?Utilisateurs $utilisateurs): static
+    {
+        $this->utilisateurs = $utilisateurs;
 
         return $this;
     }
