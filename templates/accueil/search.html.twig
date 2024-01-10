@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="container col-xs-7 col-12 div_cat mt-5 py-5">
+
+		<div class=" liste_cat">
+
+			<div class="row">
+
+				<div class="float text-center">
+					{% for message_ok in app.flashes('success') %}
+						<div class="alert alert-success" role="alert">{{ message_ok }}</div>
+					{% endfor %}
+					{% for message_ko in app.flashes('warning') %}
+						<div class="alert alert-warning" role="alert">{{ message_ko }}</div>
+					{% endfor %}
+				</div>
+
+				{% for prod in produit %}
+
+					<div class="m-auto my-5" id="" style="width: 18rem; background-color:purple; border-radius:10px; padding:10px">
+						<span class="d-block text-center text-white mb-3">
+							<a
+								href="{{path('app_detail_prod', {id: produit.libelle})}}" style="text-decoration:none">
+								<!-- affichage des noms de catégories -->
+								<h5 class="card-title text-center my-2">
+									<strong>"{{ produit.libelle |upper }}"</strong>
+								</h5>
+								<!-- partie inférieure avec l'image -->
+								<img src="{{'/img/' ~ produit.img_prod}}" alt="image" srcset="" class="rounded card-img-top img-fluid">
+								<p class="my-3">
+									{{produit.description}}
+								</p>
+								<div class="d-flex col-12 m-auto my-3">
+									<div class="row mx-3">
+										{% if produit.active == 1 %}
+											<a href="{{ path('panier_add', {id: produit.id_prod}) }}" class="btn btn-success">Ajouter au panier</a>
+										{% endif %}
+									</div>
+									<div class="row mx-3">
+										<a class="btn btn-success" href="{{path('app_accueil')}}">Retour à l'accueil</a>
+									</div>
+								</div>
+							</a>
+						</span>
+					</div>
+					{# 
+																																																		<div class="m-auto my-5" id="" style="width: 18rem; background-color:purple; border-radius:10px; padding:10px">
+																																																			<span class="d-block text-center text-white mb-3">
+																																													
+																																																				<h5 class="text-center my-3">
+																																																					<strong>"
+																																																						{{ plat.libelle |upper }}
+																																																						"</strong>
+																																																				</h5>
+																																																				<img src="{{'/images_the_district/food/' ~ plat.image}}" alt="image" srcset="" class="card-img-top img-fluid" style="border-radius:10px;">
+																																													
+																																																				<h5 class="text-center mt-3">
+																																																					<strong>"{{ plat.description}}"</strong>
+																																																				</h5>
+																																																				<h5 class="text-center my-3">
+																																																					<strong>{{ plat.prix / 100 }}
+																																																						&euro;
+																																																					</strong>
+																																																				</h5>
+																																																				{% if plat.active > 0 %}
+																																																					<a href="{{ path('panier_add', {id: plat.id}) }}" class="btn btn-success">Ajouter au panier</a>
+																																																				{% else %}
+																																																					<p class="text-danger">Temporairement en rupture de stock</p>
+																																																				{% endif %}
+																																																			</span>
+																																																		</div> #}
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

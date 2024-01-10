@@ -113,7 +113,7 @@
 			</div>
 		</div>
 
-		<div class="container-fluid col-12 d-flex justify-content-around text-center text-white" style="background-color:purple">
+		<div class="container-fluid col-12 p-0 d-flex justify-content-around text-center text-white" style="background-color:purple">
 
 			<nav class="navbar navbar-expand-lg p-0">
 				<div class="navbar">
@@ -159,7 +159,7 @@
 							</li>
 
 							<span class="col nav-item m-auto">
-								<form method="post" action="" class="" role="search">
+								<form method="post" action="{{ path('app_search') }}" class="float-right" role="search">
 									<input class="search" name="search" type="search" placeholder="Rechercher" aria-label="Search">
 									<button class="btn btn-success" type="submit">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
@@ -220,8 +220,8 @@
 		</section>
 
 		<div class="text-center mt-5 p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			<a class="text-center text-white p-3" href="">Politique de confidentialité</a>
-			<a class="text-center text-white p-3" href="">Mentions légales</a>
+			<a class="text-center text-white p-3" href="{{ path ('app_confid')}}">Politique de confidentialité</a>
+			<a class="text-center text-white p-3" href="{{ path ('app_mentions')}}">Mentions légales</a>
 		</div>
 
 	</div>

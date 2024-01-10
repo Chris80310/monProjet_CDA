@@ -45,4 +45,20 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    // Barre de recherche :
+
+    public function findSearch($search): array
+    {
+        $libelle = '%' . $search . '%';
+        $description = '%' . $search . '%';
+
+        return $this->createQueryBuilder('p')
+
+            ->andwhere('p.libel_prod like :libelle')
+            ->orWhere('p.description like :description')
+            ->setParameters([':description' => $description, ':libelle' => $libelle])
+            ->getQuery()
+            ->getResult();
+    }
 }
