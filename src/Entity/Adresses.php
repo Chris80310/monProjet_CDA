@@ -10,23 +10,21 @@ class Adresses
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_adr = null;
-
-    #[ORM\Column]
-    private ?int $id_util = null;
+    #[ORM\Column(length: 255)]
+    private ?string $adr_livr = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $cli_adr_livr = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $cli_adr_fact = null;
+    private ?string $adr_fact = null;
 
     #[ORM\Column(length: 255)]
     private ?string $util_adr = null;
+
+    #[ORM\ManyToOne(inversedBy: 'Adresses')]
+    private ?Utilisateurs $utilisateurs = null;
 
     public function getId(): ?int
     {
@@ -35,48 +33,48 @@ class Adresses
 
     public function getIdAdr(): ?int
     {
-        return $this->id_adr;
+        return $this->id;
     }
 
-    public function setIdAdr(int $id_adr): static
+    public function setIdAdr(int $id): static
     {
-        $this->id_adr = $id_adr;
+        $this->id = $id;
 
         return $this;
     }
 
     public function getIdUtil(): ?int
     {
-        return $this->id_util;
+        return $this->id;
     }
 
-    public function setIdUtil(int $id_util): static
+    public function setIdUtil(int $id): static
     {
-        $this->id_util = $id_util;
+        $this->id = $id;
 
         return $this;
     }
 
     public function getCliAdrLivr(): ?string
     {
-        return $this->cli_adr_livr;
+        return $this->adr_livr;
     }
 
-    public function setCliAdrLivr(string $cli_adr_livr): static
+    public function setCliAdrLivr(string $adr_livr): static
     {
-        $this->cli_adr_livr = $cli_adr_livr;
+        $this->adr_livr = $adr_livr;
 
         return $this;
     }
 
     public function getCliAdrFact(): ?string
     {
-        return $this->cli_adr_fact;
+        return $this->adr_fact;
     }
 
-    public function setCliAdrFact(string $cli_adr_fact): static
+    public function setCliAdrFact(string $adr_fact): static
     {
-        $this->cli_adr_fact = $cli_adr_fact;
+        $this->adr_fact = $adr_fact;
 
         return $this;
     }
@@ -89,6 +87,18 @@ class Adresses
     public function setUtilAdr(string $util_adr): static
     {
         $this->util_adr = $util_adr;
+
+        return $this;
+    }
+
+    public function getUtilisateurs(): ?Utilisateurs
+    {
+        return $this->utilisateurs;
+    }
+
+    public function setUtilisateurs(?Utilisateurs $utilisateurs): static
+    {
+        $this->utilisateurs = $utilisateurs;
 
         return $this;
     }

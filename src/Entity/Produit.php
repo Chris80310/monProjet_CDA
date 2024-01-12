@@ -14,17 +14,14 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_prod = null;
-
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $img_prod = null;
+    private ?string $img = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $libel_prod = null;
+    private ?string $libelle = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $prix_achat_fourn = null;
+    private ?string $prxAchFourn = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix_vente_ht = null;
@@ -45,48 +42,48 @@ class Produit
 
     public function getIdProd(): ?int
     {
-        return $this->id_prod;
+        return $this->id;
     }
 
-    public function setIdProd(int $id_prod): static
+    public function setIdProd(int $id): static
     {
-        $this->id_prod = $id_prod;
+        $this->id = $id;
 
         return $this;
     }
 
     public function getImgProd(): ?string
     {
-        return $this->img_prod;
+        return $this->img;
     }
 
-    public function setImgProd(?string $img_prod): static
+    public function setImgProd(?string $img): static
     {
-        $this->img_prod = $img_prod;
+        $this->img = $img;
 
         return $this;
     }
 
-    public function getLibelProd(): ?string
+    public function getLibelleProd(): ?string
     {
-        return $this->libel_prod;
+        return $this->libelle;
     }
 
-    public function setLibelProd(string $libel_prod): static
+    public function setLibelleProd(string $libelle): static
     {
-        $this->libel_prod = $libel_prod;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     public function getPrixAchatFourn(): ?string
     {
-        return $this->prix_achat_fourn;
+        return $this->prxAchFourn;
     }
 
-    public function setPrixAchatFourn(string $prix_achat_fourn): static
+    public function setPrixAchatFourn(string $prxAchFourn): static
     {
-        $this->prix_achat_fourn = $prix_achat_fourn;
+        $this->prxAchFourn = $prxAchFourn;
 
         return $this;
     }

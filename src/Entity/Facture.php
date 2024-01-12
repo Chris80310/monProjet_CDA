@@ -14,9 +14,6 @@ class Facture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_fact = null;
-
     #[ORM\Column(length: 1)]
     private ?string $mode_paie = null;
 
@@ -42,12 +39,12 @@ class Facture
 
     public function getIdFact(): ?int
     {
-        return $this->id_fact;
+        return $this->id;
     }
 
-    public function setIdFact(int $id_fact): static
+    public function setIdFact(int $id): static
     {
-        $this->id_fact = $id_fact;
+        $this->id = $id;
 
         return $this;
     }

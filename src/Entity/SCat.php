@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Entity;
-
-use App\Repository\SsCatRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SsCatRepository::class)]
+#[ORM\Entity(repositoryClass: SCatRepository::class)]
 class SsCat
 {
     #[ORM\Id]
@@ -13,14 +11,11 @@ class SsCat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_ss_cat = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $libel_ss_cat = null;
+    private ?string $libelle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $img_ss_cat = null;
+    private ?string $img = null;
 
     #[ORM\Column]
     private ?int $id_cat = null;
@@ -32,36 +27,36 @@ class SsCat
 
     public function getIdSsCat(): ?int
     {
-        return $this->id_ss_cat;
+        return $this->id;
     }
 
-    public function setIdSsCat(int $id_ss_cat): static
+    public function setIdSsCat(int $id): static
     {
-        $this->id_ss_cat = $id_ss_cat;
+        $this->id = $id;
 
         return $this;
     }
 
-    public function getLibelSsCat(): ?string
+    public function getLibelleSsCat(): ?string
     {
-        return $this->libel_ss_cat;
+        return $this->libelle;
     }
 
-    public function setLibelSsCat(string $libel_ss_cat): static
+    public function setLibelleSsCat(string $libelle): static
     {
-        $this->libel_ss_cat = $libel_ss_cat;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     public function getImgSsCat(): ?string
     {
-        return $this->img_ss_cat;
+        return $this->img;
     }
 
-    public function setImgSsCat(?string $img_ss_cat): static
+    public function setImgSsCat(?string $img): static
     {
-        $this->img_ss_cat = $img_ss_cat;
+        $this->img = $img;
 
         return $this;
     }

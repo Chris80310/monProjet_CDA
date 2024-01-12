@@ -18,9 +18,6 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_util = null;
-
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $nom_entr = null;
 
@@ -33,6 +30,9 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    // #[ORM\Column(length: 180, unique: true)]
+    // private ?string $adr = null;
+
     #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2, nullable: true)]
     private ?string $coef = null;
 
@@ -40,21 +40,25 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(length: 50)]
-    private ?string $util_mdp = null;
+    private ?string $mdp = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $com_assignee = null;
 
     #[ORM\ManyToOne(targetEntity: Utilisateurs::class)]
-    #[JoinColumn(name: 'id_util_2', referencedColumName: 'id_util')]
-    private ?utilisateurs $id_util_2 = null;
+    #[JoinColumn(name: 'id_2', referencedColumName: 'id')]
+    private ?Utilisateurs $id_2 = null;
 
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Commande::class)]
     private Collection $commande;
 
+    #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresses::class)]
+    private Collection $Adresses;
+
     public function __construct()
     {
         $this->commande = new ArrayCollection();
+        $this->Adresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,12 +68,12 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getIdUtil(): ?int
     {
-        return $this->id_util;
+        return $this->id;
     }
 
-    public function setIdUtil(int $id_util): static
+    public function setIdUtil(int $id): static
     {
-        $this->id_util = $id_util;
+        $this->id = $id;
 
         return $this;
     }
@@ -122,32 +126,32 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdresses(): Collection
-    {
-        return $this->adresses;
-    }
+    // public function getAdress(): Collection
+    // {
+    //     return $this->adr;
+    // }
 
-    public function addAdress(Adresse $adress): static
-    {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses->add($adress);
-            $adress->setUtilisateur($this);
-        }
+    // public function addAdress(Adr $adr): static
+    // {
+    //     if (!$this->adr->contains($adr)) {
+    //         $this->adr->add($adr);
+    //         $adr->setUtilisateur($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeAdress(Adresse $adress): static
-    {
-        if ($this->adresses->removeElement($adress)) {
-            //définir le côté propriétaire sur null (sauf si déjà modifié)
-            if ($adress->getUtilisateur() === $this) {
-                $adress->setUtilisateur(null);
-            }
-        }
+    // public function removeAdress(Adr $adr): static
+    // {
+    //     if ($this->adr->removeElement($adr)) {
+    //         //définir le côté propriétaire sur null (sauf si déjà modifié)
+    //         if ($adr->getUtilisateur() === $this) {
+    //             $adr->setUtilisateur(null);
+    //         }
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getUserIdentifier(): string
     {
@@ -187,12 +191,12 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getPassword(): ?string
     {
-        return $this->util_mdp;
+        return $this->mdp;
     }
 
-    public function setPassword(string $util_mdp): static
+    public function setPassword(string $mdp): static
     {
-        $this->util_mdp = $util_mdp;
+        $this->mdp = $mdp;
 
         return $this;
     }
@@ -200,7 +204,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // Effacer des données temporaires et sensibles sur l'utilisateur :
-        // $this->util_mdp = null;
+        // $this->mdp = null;
     }
 
     public function isComAssignee(): ?bool
@@ -217,12 +221,12 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getIdUtil2(): ?utilisateurs
     {
-        return $this->id_util_2;
+        return $this->id_2;
     }
 
-    public function setIdUtil2(?utilisateurs $id_util_2): static
+    public function setIdUtil2(?utilisateurs $id_2): static
     {
-        $this->id_util_2 = $id_util_2;
+        $this->id_2 = $id_2;
 
         return $this;
     }
@@ -251,6 +255,36 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($commande->getUtilisateurs() === $this) {
                 $commande->setUtilisateurs(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Adresses>
+     */
+    public function getAdresses(): Collection
+    {
+        return $this->Adresses;
+    }
+
+    public function addAdress(Adresses $adress): static
+    {
+        if (!$this->Adresses->contains($adress)) {
+            $this->Adresses->add($adress);
+            $adress->setUtilisateurs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdress(Adresses $adress): static
+    {
+        if ($this->Adresses->removeElement($adress)) {
+            // set the owning side to null (unless already changed)
+            if ($adress->getUtilisateurs() === $this) {
+                $adress->setUtilisateurs(null);
             }
         }
 

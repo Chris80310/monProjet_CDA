@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\DetailsCommandeRepository;
+use App\Repository\DetailCommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DetailsCommandeRepository::class)]
-class DetailsCommande
+#[ORM\Entity(repositoryClass: DetailCommandeRepository::class)]
+class DetailCommande
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

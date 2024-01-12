@@ -14,14 +14,11 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_com = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_com = null;
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $total_com = null;
+    private ?string $total = null;
 
     #[ORM\ManyToOne(inversedBy: 'commande')]
     #[ORM\JoinColumn(nullable: false)]
@@ -34,36 +31,36 @@ class Commande
 
     public function getIdCom(): ?int
     {
-        return $this->id_com;
+        return $this->id;
     }
 
-    public function setIdCom(int $id_com): static
+    public function setIdCom(int $id): static
     {
-        $this->id_com = $id_com;
+        $this->id = $id;
 
         return $this;
     }
 
     public function getDateCom(): ?\DateTimeInterface
     {
-        return $this->date_com;
+        return $this->date;
     }
 
-    public function setDateCom(\DateTimeInterface $date_com): static
+    public function setDateCom(\DateTimeInterface $date): static
     {
-        $this->date_com = $date_com;
+        $this->date = $date;
 
         return $this;
     }
 
     public function getTotalCom(): ?string
     {
-        return $this->total_com;
+        return $this->total;
     }
 
-    public function setTotalCom(string $total_com): static
+    public function setTotalCom(string $total): static
     {
-        $this->total_com = $total_com;
+        $this->total = $total;
 
         return $this;
     }

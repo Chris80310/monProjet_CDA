@@ -14,9 +14,6 @@ class BonLivraison
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_bl = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_livr = null;
 
@@ -30,12 +27,12 @@ class BonLivraison
 
     public function getIdBl(): ?int
     {
-        return $this->id_bl;
+        return $this->id;
     }
 
-    public function setIdBl(int $id_bl): static
+    public function setIdBl(int $id): static
     {
-        $this->id_bl = $id_bl;
+        $this->id = $id;
 
         return $this;
     }
