@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Repository\DetailRepository;
 use App\Repository\UtilisateurRepository;
-use App\Repository\CategoriesRepository;
+use App\Repository\CatRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
