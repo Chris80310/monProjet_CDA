@@ -29,9 +29,9 @@ use Symfony\Component\Routing\Annotation\Route;
         $reach = $produit->findSearch($search);
         if ($reach) {
             $this->addFlash('success', "Votre recherche a retourné " . count($produit) . " résultats.");
-        } else {
+                    } else {
             $this->addFlash('warning', "Votre recherche n'a pas abouti.");
-        }
+                    }
 
         return $this->render('accueil/search.html.twig', [
             'controller_name' => 'AccueilController',

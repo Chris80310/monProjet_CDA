@@ -41,12 +41,12 @@ class Adresses
 
     public function getIdUtil(): ?int
     {
-        return $this->id_util;
+        return $this->id;
     }
 
     public function setIdUtil(int $id): static
     {
-        $this->id_util = $id_util;
+        $this->id = $id;
 
         return $this;
     }
