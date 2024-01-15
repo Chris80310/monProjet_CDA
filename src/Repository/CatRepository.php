@@ -20,6 +20,24 @@ class CatRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Cat::class);
     }
+
+    public function save(Cat $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Cat $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 //    /**
 //     * @return Cat[] Returns an array of Cat objects
 //     */

@@ -46,15 +46,17 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $com_assignee = null;
 
-    #[ORM\ManyToOne(targetEntity: Utilisateurs::class)]
-    #[JoinColumn(name: 'id_2', referencedColumName: 'id')]
-    private ?Utilisateurs $id_2 = null;
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'id')]
+    private ?self $resp = null;
 
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Commande::class)]
     private Collection $commande;
 
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresses::class)]
     private Collection $Adresses;
+
+    // #[ORM\Column]
+    // private ?int $resp = null;
 
     public function __construct()
     {
@@ -220,17 +222,17 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIdUtil2(): ?utilisateurs
-    {
-        return $this->id_2;
-    }
+    // public function getIdUtil2(): ?utilisateurs
+    // {
+    //     return $this->id_2;
+    // }
 
-    public function setIdUtil2(?utilisateurs $id_2): static
-    {
-        $this->id_2 = $id_2;
+    // public function setIdUtil2(?utilisateurs $id_2): static
+    // {
+    //     $this->id_2 = $id_2;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Commande>
@@ -288,6 +290,18 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
                 $adress->setUtilisateurs(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResp(): ?self
+    {
+        return $this->resp;
+    }
+
+    public function setResp(?self $resp): static
+    {
+        $this->resp = $resp;
 
         return $this;
     }

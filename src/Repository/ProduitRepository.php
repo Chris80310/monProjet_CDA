@@ -55,7 +55,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('p')
 
-            ->andwhere('p.libel_prod like :libelle')
+            ->andwhere('p.libelle like :libelle')
             ->orWhere('p.description like :description')
             ->setParameters([':description' => $description, ':libelle' => $libelle])
             ->getQuery()

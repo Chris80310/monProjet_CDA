@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Repository\DetailRepository;
-use App\Repository\UtilisateurRepository;
+use App\Repository\UtilisateursRepository;
 use App\Repository\CatRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
     class AccueilController extends AbstractController
 {
+    // private $userRepo;
+    // private $catRepo;
+    private $produitRepo;
+    // private $detailRepo;
+
+    public function __construct(UtilisateursRepository $userRepo, CatRepository $catRepo, ProduitRepository $produitRepo, DetailRepository $detailRepo)
+    {
+        // $this->userRepo = $userRepo;
+        // $this->catRepo = $catRepo;
+        $this->produitRepo = $produitRepo;
+        // $this->detailRepo = $detailRepo;
+    }
+    
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
@@ -25,8 +38,13 @@ use Symfony\Component\Routing\Annotation\Route;
     #[Route('/search', name: 'app_search')]
     public function search(ProduitRepository $produit, Request $request): Response
     {
+
+        $request = new Request([
+            'recherche' => '',
+        ]);
+        
         $search = $request->request->get('search');
-        $reach = $produit->findSearch($search);
+        $reach = $this->produitRepo->findSearch($search);
         if ($reach) {
             $this->addFlash('success', "Votre recherche a retourné " . count($produit) . " résultats.");
                     } else {
@@ -64,7 +82,7 @@ use Symfony\Component\Routing\Annotation\Route;
 //     private $prodRepo;
 //     private $detailRepo;
 
-//     public function __construct(UtilisateurRepository $userRepo, CategorieRepository $catRepo, ProduitRepository $prodRepo, DetailRepository $detailRepo)
+//     public function __construct(UtilisateursRepository $userRepo, CatRepository $catRepo, ProduitRepository $prodRepo, DetailRepository $detailRepo)
 //     {
 //         $this->userRepo = $userRepo;
 //         $this->catRepo = $catRepo;

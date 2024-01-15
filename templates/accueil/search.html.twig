@@ -28,14 +28,14 @@
 									<strong>"{{ produit.libelle |upper }}"</strong>
 								</h5>
 								<!-- partie inférieure avec l'image -->
-								<img src="{{'/img/' ~ produit.img_prod}}" alt="image" srcset="" class="rounded card-img-top img-fluid">
+								<img src="{{'/img/' ~ produit.img}}" alt="image" srcset="" class="rounded card-img-top img-fluid">
 								<p class="my-3">
 									{{produit.description}}
 								</p>
 								<div class="d-flex col-12 m-auto my-3">
 									<div class="row mx-3">
 										{% if produit.active == 1 %}
-											<a href="{{ path('panier_add', {id: produit.id_prod}) }}" class="btn btn-success">Ajouter au panier</a>
+											<a href="{{ path('panier_add', {id: produit.id}) }}" class="btn btn-success">Ajouter au panier</a>
 										{% endif %}
 									</div>
 									<div class="row mx-3">
