@@ -21,7 +21,7 @@ class Adresses
     private ?string $adr_fact = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $util_adr = null;
+    private ?string $adr_util = null;
 
     #[ORM\ManyToOne(inversedBy: 'Adresses')]
     private ?Utilisateurs $utilisateurs = null;
@@ -31,12 +31,8 @@ class Adresses
         return $this->id;
     }
 
-    public function getIdAdr(): ?int
-    {
-        return $this->id;
-    }
 
-    public function setIdAdr(int $id): static
+    public function setId(int $id): static
     {
         $this->id = $id;
 
@@ -45,12 +41,12 @@ class Adresses
 
     public function getIdUtil(): ?int
     {
-        return $this->id;
+        return $this->id_util;
     }
 
     public function setIdUtil(int $id): static
     {
-        $this->id = $id;
+        $this->id_util = $id_util;
 
         return $this;
     }
@@ -81,12 +77,12 @@ class Adresses
 
     public function getUtilAdr(): ?string
     {
-        return $this->util_adr;
+        return $this->adr_util;
     }
 
-    public function setUtilAdr(string $util_adr): static
+    public function setUtilAdr(string $adr_util): static
     {
-        $this->util_adr = $util_adr;
+        $this->adr_util = $adr_util;
 
         return $this;
     }
