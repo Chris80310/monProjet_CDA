@@ -13,15 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitController extends AbstractController
 {
 
-    private $userRepo;
-    private $catRepo;
-    private $produitRepo;
+    private $user;
+    private $cat;
+    private $scat;
+    private $produit;
+    private $detail;
 
-    public function __construct(UtilisateursRepository $userRepo, CatRepository $catRepo, ProduitRepository $produitRepo, DetailRepository $detailRepo)
+    public function __construct(UtilisateursRepository $user, CatRepository $cat, SCatRepository $scat, ProduitRepository $produit)
+    // DetailRepository $detail
     {
-        $this->userRepo = $userRepo;
-        $this->catRepo = $catRepo;
-        $this->produitRepo = $produitRepo;
+        $this->user = $user;
+        $this->scat = $scat;
+        $this->cat = $cat;
+        $this->produit = $produit;
     }
 
     #[Route('/produit', name: 'app_produit')]
@@ -35,29 +39,29 @@ class ProduitController extends AbstractController
       // produit par id : 
 
       #[Route('/produit/{id}', name: 'app_produit')]
-      public function prodParId(Cat $id): Response
+      public function prodParId(SCatRepository $scat): Response
       {
-          $categorie = $this->catRepo->find($id);
-          $prod = $this->produitRepo->prodParCat($categorie->getId());
+          $scat = $this->scat->find($scat);
+          $produit = $this->produit->prodParSCat($scat->getId());
   
-          // dd($prod);
+          // dd($produit);
   
           return $this->render('produits/prodParCat.html.twig', [
               'controller_name' => 'AccueilController',
-              'produit' => $prod
+              'produit' => $produit
           ]);
       }
   
       // Details prod :
   
-      #[Route('/detail_prod/{id}', name: 'app_detail_prod')]
-      public function prodDetail(prod $id): Response
+      #[Route('/produit/{id}', name: 'detail_prod')]
+      public function DetailProd(ProduitRepository $produit): Response
         {
-            $prod = $this->produitRepo->find($id);
+            $produit = $this->produit->find($produit);
 
-            return $this->render('detail_prod/detail_prod.html.twig', [
-                'controller_name' => 'prodController',
-                'prod' => $prod,
+            return $this->render('produit/detail_prod.html.twig', [
+                'controller_name' => 'ProduitController',
+                'produit' => $produit
             ]);
         }
 }

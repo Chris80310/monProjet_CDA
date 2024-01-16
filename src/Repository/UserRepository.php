@@ -24,7 +24,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($registry, Utilisateurs::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (!$user instanceof User) {
+        if (!$user instanceof Utilisateurs) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
 
