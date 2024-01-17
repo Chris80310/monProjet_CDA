@@ -46,6 +46,57 @@ class ProduitRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function save(Produit $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Produit $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    // Produits par catégories :
+
+    public function prodParCat($id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.cat = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Produits par sous-catégories :
+
+    public function prodParSCat($id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.scat = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Produits par fabricant :
+
+    public function prodParFab($id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.fab = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // Barre de recherche :
 
     public function findSearch($search): array

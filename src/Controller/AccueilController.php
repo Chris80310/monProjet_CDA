@@ -39,28 +39,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
         // Barre de recherche : 
 
-    // #[Route('/search', name: 'app_search')]
-    // public function search(ProduitRepository $produit, Request $request): Response
-    // {
-
-    //     $request = new Request([
-    //         'recherche' => '',
-    //     ]);
-        
-    //     $search = $request->request->get('search');
-    //     $reach = $this->produit->findSearch($search);
-    //     if ($reach) {
-    //         $this->addFlash('success', "Votre recherche a retourné " . count($produit) . " résultats.");
-    //                 } else {
-    //         $this->addFlash('warning', "Votre recherche n'a pas abouti.");
-    //                 }
-
-    //     return $this->render('accueil/search.html.twig', [
-    //         'controller_name' => 'AccueilController',
-    //         'reach' => $reach,
-    //     ]);
-    // }
-
     #[Route('/recherche', nom: 'app_search')]
     public function recherche(ProduitRepository $produit, Request $request): Response
     {
@@ -73,10 +51,10 @@ use Symfony\Component\Routing\Annotation\Route;
         $search = $request->request->get('search');
 
         // Trouvez les produits correspondants au mot-clé de recherche
-        $produits = $this->produit->trouverRecherche($search);
+        $produits = $this->produit->findSearch($search);
 
         // Vérifiez si des produits ont été trouvés
-        if ($produits) {
+        if ($produits){
             // Afficher un message de réussite
             $this->addFlash('success', "Votre recherche a retourné " . count($produits) . " résultats.");
         } else {
