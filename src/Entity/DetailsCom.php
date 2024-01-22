@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\DetailCommandeRepository;
+use App\Repository\DetailsComRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DetailCommandeRepository::class)]
-class DetailCommande
+#[ORM\Entity(repositoryClass: DetailsComRepository::class)]
+class DetailsCom
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,10 +15,10 @@ class DetailCommande
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $id_prod = null;
+    private ?int $prod_id = null;
 
     #[ORM\Column]
-    private ?int $id_com = null;
+    private ?int $com_id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '0')]
     private ?string $qte = null;
@@ -33,24 +33,24 @@ class DetailCommande
 
     public function getIdProd(): ?int
     {
-        return $this->id_prod;
+        return $this->prod_id;
     }
 
-    public function setIdProd(int $id_prod): static
+    public function setIdProd(int $prod_id): static
     {
-        $this->id_prod = $id_prod;
+        $this->prod_id = $prod_id;
 
         return $this;
     }
 
     public function getIdCom(): ?int
     {
-        return $this->id_com;
+        return $this->com_id;
     }
 
-    public function setIdCom(int $id_com): static
+    public function setIdCom(int $com_id): static
     {
-        $this->id_com = $id_com;
+        $this->com_id = $com_id;
 
         return $this;
     }

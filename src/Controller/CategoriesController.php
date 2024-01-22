@@ -16,3 +16,14 @@ class CategoriesController extends AbstractController
         ]);
     }
 }
+
+class ScatController extends AbstractController
+{
+    #[Route('/sous-categories', name: 'app_scat')]
+    public function index(): Response
+    {
+        return $this->render('categories/scat.html.twig', [
+            'controller_name' => 'ScatController',
+        ]);
+    }
+}

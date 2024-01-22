@@ -30,24 +30,19 @@ class Facture
     private ?string $prix_tot = null;
 
     #[ORM\Column]
-    private ?int $id_com = null;
+    private ?int $com_id = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdFact(): ?int
-    {
-        return $this->id;
-    }
+    // public function setId(int $id): static
+    // {
+    //     $this->id = $id;
 
-    public function setIdFact(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getModePaie(): ?string
     {
@@ -111,12 +106,12 @@ class Facture
 
     public function getIdCom(): ?int
     {
-        return $this->id_com;
+        return $this->com_id;
     }
 
-    public function setIdCom(int $id_com): static
+    public function setIdCom(int $com_id): static
     {
-        $this->id_com = $id_com;
+        $this->com_id = $com_id;
 
         return $this;
     }

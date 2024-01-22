@@ -19,9 +19,6 @@ class Fabricant
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $relation = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -51,15 +48,4 @@ class Fabricant
         return $this;
     }
 
-    // public function getRelation(): ?string
-    // {
-    //     return $this->relation;
-    // }
-
-    // public function setRelation(string $relation): static
-    // {
-    //     $this->relation = $relation;
-
-    //     return $this;
-    // }
 }

@@ -65,9 +65,9 @@ CREATE TABLE utilisateurs(
 
 CREATE TABLE adresse(
    id INT AUTO_INCREMENT,
-   adr VARCHAR(250),
-   adr_livr VARCHAR(250) NOT NULL,
-   adr_fact VARCHAR(250) NOT NULL,
+   adr VARCHAR(255),
+   adr_livr VARCHAR(255) NOT NULL,
+   adr_fact VARCHAR(255) NOT NULL,
    util_id INT,
    PRIMARY KEY(id),
    FOREIGN KEY(util_id) REFERENCES utilisateurs(id)

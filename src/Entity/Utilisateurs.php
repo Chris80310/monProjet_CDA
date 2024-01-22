@@ -23,13 +23,16 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom_entr = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $cli_nom = null;
+    private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $cli_prenom = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
+
+    #[ORM\Column(length: 50, unique: true)]
+    private ?string $tel = null;
 
     // #[ORM\Column(length: 180, unique: true)]
     // private ?string $adr = null;
@@ -38,7 +41,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $coef = null;
 
     #[ORM\Column(length: 1)]
-    private array $roles = [];
+    private array $role = [];
 
     #[ORM\Column(length: 50)]
     private ?string $mdp = null;
@@ -52,8 +55,8 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Commande::class)]
     private Collection $commande;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresses::class)]
-    private Collection $Adresses;
+    #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresse::class)]
+    private Collection $Adresse;
 
     // #[ORM\Column]
     // private ?int $resp = null;
@@ -61,7 +64,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->commande = new ArrayCollection();
-        $this->Adresses = new ArrayCollection();
+        $this->Adresse = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,17 +72,12 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getIdUtil(): ?int
-    {
-        return $this->id;
-    }
+    // public function setId(int $id): static
+    // {
+    //     $this->id = $id;
 
-    public function setIdUtil(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getNomEntr(): ?string
     {
@@ -93,26 +91,26 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCliNom(): ?string
+    public function getNom(): ?string
     {
-        return $this->cli_nom;
+        return $this->nom;
     }
 
-    public function setCliNom(?string $cli_nom): static
+    public function setNom(?string $nom): static
     {
-        $this->cli_nom = $cli_nom;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getCliPrenom(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->cli_prenom;
+        return $this->prenom;
     }
 
-    public function setCliPrenom(?string $cli_prenom): static
+    public function setPrenom(?string $prenom): static
     {
-        $this->cli_prenom = $cli_prenom;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -125,6 +123,18 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): self
+    {
+        $this->tel = $tel;
 
         return $this;
     }
@@ -265,26 +275,26 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Adresses>
+     * @return Collection<int, Adresse>
      */
-    public function getAdresses(): Collection
+    public function getAdresse(): Collection
     {
-        return $this->Adresses;
+        return $this->Adresse;
     }
 
-    public function addAdress(Adresses $adress): static
+    public function addAdress(Adresse $adress): static
     {
-        if (!$this->Adresses->contains($adress)) {
-            $this->Adresses->add($adress);
+        if (!$this->Adresse->contains($adress)) {
+            $this->Adresse->add($adress);
             $adress->setUtilisateurs($this);
         }
 
         return $this;
     }
 
-    public function removeAdress(Adresses $adress): static
+    public function removeAdress(Adresse $adress): static
     {
-        if ($this->Adresses->removeElement($adress)) {
+        if ($this->Adresse->removeElement($adress)) {
             // set the owning side to null (unless already changed)
             if ($adress->getUtilisateurs() === $this) {
                 $adress->setUtilisateurs(null);

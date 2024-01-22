@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\SCatRepository;
+use App\Repository\ScatRepository;
+use App\Repository\CatRepository;
 
-#[ORM\Entity(repositoryClass: SCatRepository::class)]
-class SCat
+#[ORM\Entity(repositoryClass: ScatRepository::class)]
+class Scat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +20,7 @@ class SCat
     private ?string $img = null;
 
     #[ORM\Column]
-    private ?int $id_cat = null;
+    private ?int $cat_id = null;
 
     public function getId(): ?int
     {
@@ -57,14 +58,14 @@ class SCat
         return $this;
     }
 
-    public function getIdCat(): ?int
+    public function getCatId(): ?int
     {
-        return $this->id_cat;
+        return $this->cat_id;
     }
 
-    public function setIdCat(int $id_cat): static
+    public function setCatId(int $cat_id): static
     {
-        $this->id_cat = $id_cat;
+        $this->cat_id = $cat_id;
 
         return $this;
     }

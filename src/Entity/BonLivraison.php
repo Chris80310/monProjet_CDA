@@ -18,19 +18,14 @@ class BonLivraison
     private ?\DateTimeInterface $date_livr = null;
 
     #[ORM\Column]
-    private ?int $id_com = null;
+    private ?int $com_id = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdBl(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setIdBl(int $id): static
+    public function setId(int $id): static
     {
         $this->id = $id;
 
@@ -49,14 +44,14 @@ class BonLivraison
         return $this;
     }
 
-    public function getIdCom(): ?int
+    public function getComId(): ?int
     {
-        return $this->id_com;
+        return $this->com_id;
     }
 
-    public function setIdCom(int $id_com): static
+    public function setComId(int $com_id): static
     {
-        $this->id_com = $id_com;
+        $this->com_id = $com_id;
 
         return $this;
     }

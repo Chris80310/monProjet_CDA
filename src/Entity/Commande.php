@@ -20,7 +20,7 @@ class Commande
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $total = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[ORM\ManyToOne(inversedBy: 'Commande')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateurs $utilisateurs = null;
 
@@ -29,36 +29,31 @@ class Commande
         return $this->id;
     }
 
-    public function getIdCom(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setIdCom(int $id): static
+    public function setId(int $id): static
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function getDateCom(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDateCom(\DateTimeInterface $date): static
+    public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getTotalCom(): ?string
+    public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    public function setTotalCom(string $total): static
+    public function setTotal(string $total): static
     {
         $this->total = $total;
 

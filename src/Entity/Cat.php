@@ -24,12 +24,7 @@ class Cat
         return $this->id;
     }
 
-    public function getIdCat(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setIdCat(int $id): static
+    public function setId(int $id): static
     {
         $this->id = $id;
 

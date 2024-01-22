@@ -2,7 +2,7 @@
 -- scat 1 : Cartes graphiques / cartes mères / processeurs / etc ...
 
 INSERT INTO utilisateurs (id, nom, prenom, role, mdp) 
-VALUES (1, 'cli-1-nom', 'cli-1-prenom', 1, '1234'), (2, 'emp-nom', 'emp-prenom', 2, '4321'); 
+VALUES (1, 'client-nom', 'client-prenom', 1, '1234'), (2, 'empl-nom', 'empl-prenom', 2, '4321'); 
 
 INSERT INTO adresse (adr, util_id) VALUES ('25 rue des bleuets 80000 amiens', 1), ('33 rue des rosiers 80000 amiens', 2); 
 
@@ -14,23 +14,23 @@ INSERT INTO cat (id, libelle) VALUES (1, 'Ordinateurs');
 INSERT INTO cat (id, libelle) VALUES (2, 'Composants'); 
 INSERT INTO cat (id, libelle) VALUES (3, 'Périphériques');
 
-INSERT INTO scat (libelle, cat_id) VALUES ('Gaming', 1); --1
-INSERT INTO scat (libelle, cat_id) VALUES ('Professionnel', 1); --2
+INSERT INTO scat (id, libelle, cat_id) VALUES (1, 'Gaming', 1);
+INSERT INTO scat (id, libelle, cat_id) VALUES (2, 'Professionnel', 1); 
 
-INSERT INTO scat (libelle, cat_id) VALUES ('Cartes graphiques', 2); --3
-INSERT INTO scat (libelle, cat_id) VALUES ('Processeurs', 2); --4
-INSERT INTO scat (libelle, cat_id) VALUES ('Refroidisseurs', 2); --5
-INSERT INTO scat (libelle, cat_id) VALUES ('Cartes mères', 2); --6
-INSERT INTO scat (libelle, cat_id) VALUES ('Ram', 2);--7
-INSERT INTO scat (libelle, cat_id) VALUES ('SSD', 2); --8
-INSERT INTO scat (libelle, cat_id) VALUES ('Alimentations', 2); --9
-INSERT INTO scat (libelle, cat_id) VALUES ('Boitiers', 2); --10
-INSERT INTO scat (libelle, cat_id) VALUES ('Cablage', 2); --11
-INSERT INTO scat (libelle, cat_id) VALUES ('Ventilateurs boitier', 2); --12
+INSERT INTO scat (id, libelle, cat_id) VALUES (3, 'Cartes graphiques', 2);
+INSERT INTO scat (id, libelle, cat_id) VALUES (4, 'Processeurs', 2); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (5, 'Refroidisseurs', 2); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (6, 'Cartes mères', 2);
+INSERT INTO scat (id, libelle, cat_id) VALUES (7, 'Ram', 2);
+INSERT INTO scat (id, libelle, cat_id) VALUES (8, 'SSD', 2); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (9, 'Alimentations', 2); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (10, 'Boitiers', 2); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (11, 'Cablage', 2);
+INSERT INTO scat (id, libelle, cat_id) VALUES (12, 'Ventilateurs boitier', 2); 
 
-INSERT INTO scat (libelle, cat_id) VALUES ('Ecrans', 3); --13
-INSERT INTO scat (libelle, cat_id) VALUES ('Claviers', 3); --14
-INSERT INTO scat (libelle, cat_id) VALUES ('Souris', 3); --15
+INSERT INTO scat (id, libelle, cat_id) VALUES (13, 'Ecrans', 3); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (14, 'Claviers', 3); 
+INSERT INTO scat (id, libelle, cat_id) VALUES (15, 'Souris', 3); 
 
 INSERT INTO produit (libelle, prix_achat_fourn, prix_vente_ht, description, scat_id) VALUES
 ('Le vortex', 800, 1000, 'PC AMD Gamer ultime 1440p : CPU Ryzen 5800X3D, GPU AMD 6800XT, 16Go ddr4 Ram 3600cl36, SSD 1To Samsung', 1);

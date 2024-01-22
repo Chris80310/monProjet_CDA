@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\UtilisateursRepository;
 use App\Repository\CatRepository;
+use App\Repository\ScatRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

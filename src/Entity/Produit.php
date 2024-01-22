@@ -21,7 +21,7 @@ class Produit
     private ?string $libelle = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $prxAchFourn = null;
+    private ?string $prix_ach_fourn = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix_vente_ht = null;
@@ -30,27 +30,22 @@ class Produit
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $id_fab = null;
+    private ?int $fab_id = null;
 
     #[ORM\Column]
-    private ?int $id_ss_cat = null;
+    private ?int $scat_id = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdProd(): ?int
-    {
-        return $this->id;
-    }
+    // public function setId(int $id): static
+    // {
+    //     $this->id = $id;
 
-    public function setIdProd(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getImgProd(): ?string
     {
@@ -64,12 +59,12 @@ class Produit
         return $this;
     }
 
-    public function getLibelleProd(): ?string
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }
 
-    public function setLibelleProd(string $libelle): static
+    public function setLibelle(string $libelle): static
     {
         $this->libelle = $libelle;
 
@@ -78,12 +73,12 @@ class Produit
 
     public function getPrixAchatFourn(): ?string
     {
-        return $this->prxAchFourn;
+        return $this->prix_ach_fourn;
     }
 
-    public function setPrixAchatFourn(string $prxAchFourn): static
+    public function setPrixAchatFourn(string $prix_ach_fourn): static
     {
-        $this->prxAchFourn = $prxAchFourn;
+        $this->prix_ach_fourn = $prix_ach_fourn;
 
         return $this;
     }
@@ -112,26 +107,26 @@ class Produit
         return $this;
     }
 
-    public function getIdFab(): ?int
+    public function getFabId(): ?int
     {
-        return $this->id_fab;
+        return $this->fab_id;
     }
 
-    public function setIdFab(int $id_fab): static
+    public function setFabId(int $fab_id): static
     {
-        $this->id_fab = $id_fab;
+        $this->fab_id = $fab_id;
 
         return $this;
     }
 
-    public function getIdSsCat(): ?int
+    public function getScatId(): ?int
     {
-        return $this->id_ss_cat;
+        return $this->scat_id;
     }
 
-    public function setIdSsCat(int $id_ss_cat): static
+    public function setScatId(int $scat_id): static
     {
-        $this->id_ss_cat = $id_ss_cat;
+        $this->scat_id = $scat_id;
 
         return $this;
     }
