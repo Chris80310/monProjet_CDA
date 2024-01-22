@@ -21,6 +21,24 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    // public function save(Detail $entity, bool $flush = false): void
+    // {
+    //     $this->getEntityManager()->persist($entity);
+
+    //     if ($flush) {
+    //         $this->getEntityManager()->flush();
+    //     }
+    // }
+
+    // public function remove(Detail $entity, bool $flush = false): void
+    // {
+    //     $this->getEntityManager()->remove($entity);
+
+    //     if ($flush) {
+    //         $this->getEntityManager()->flush();
+    //     }
+    // }
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
@@ -75,6 +93,17 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // sous-catégories par catégories :
+
+    public function scatParCat($id): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('cat.scat = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // Produits par sous-catégories :
 
     public function prodParScat($id): array
@@ -95,6 +124,47 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
+    }
+
+    // top 3 sous-catégories :
+
+    public function top3_scat(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('sc');
+
+        $queryBuilder
+            ->select('count(com.id) AS nbr_vente, com.id, com.libelle, com.image')
+            ->leftJoin('sc.produit', 'p')
+            ->leftJoin('p.scat', 'c')
+            ->leftJoin('sc.com', 'cmm')
+            ->where('com.active = :active')
+            ->setParameter('active', true)
+            ->groupBy('com.id')
+            ->orderBy('nbr_vente', 'DESC')
+            ->setMaxResults(3);
+
+        $result = $queryBuilder->getQuery()->getResult();
+        return $result;
+    }
+
+    // top 3 ventes :
+
+    public function top3ventes(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('d');
+
+        $queryBuilder
+            ->select('count(p.id) AS nbr_vente, p.id, p.libelle, p.image')
+            ->leftJoin('d.produit', 'p')
+            ->leftJoin('d.commande', 'c')
+            ->where('c.etat = :etat')
+            ->setParameter('etat', 3)
+            ->groupBy('p.id')
+            ->orderBy('nbr_vente', 'DESC')
+            ->setMaxResults(3);
+
+        $result = $queryBuilder->getQuery()->getResult();
+        return $result;
     }
 
     // Barre de recherche :

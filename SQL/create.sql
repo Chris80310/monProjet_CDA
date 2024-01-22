@@ -1,112 +1,113 @@
-CREATE DATABASE hardware_shop;
-USE hardware_shop;
-
-CREATE TABLE commande(
-   id_com INT AUTO_INCREMENT,
-   date_com DATE NOT NULL,
-   total_com DECIMAL(7,2) NOT NULL,
-   PRIMARY KEY(id_com)
-);
+CREATE DATABASE monProjet_CDA;
+USE monProjet_CDA;
 
 CREATE TABLE fabricant(
-   id_fab INT AUTO_INCREMENT,
-   logo_fab VARCHAR(50) ,
-   nom_fab VARCHAR(50) NOT NULL,
-   PRIMARY KEY(id_fab)
-);
-
-
-CREATE TABLE bon_livraison(
-   id_bl INT AUTO_INCREMENT,
-   date_livr DATE NOT NULL,
-   id_com INT NOT NULL,
-   PRIMARY KEY(id_bl),
-   FOREIGN KEY(id_com) REFERENCES commande (id_com)
+   id INT AUTO_INCREMENT,
+   logo VARCHAR(50) ,
+   nom VARCHAR(50) NOT NULL,
+   PRIMARY KEY(id)
 );
 
 CREATE TABLE cat(
-   id_cat INT AUTO_INCREMENT,
-   img_cat VARCHAR(50) ,
-   libel_cat VARCHAR(50) ,
-   PRIMARY KEY(id_cat)
+   id INT AUTO_INCREMENT,
+   img VARCHAR(50),
+   libelle VARCHAR(50) ,
+   PRIMARY KEY(id)
 );
 
 CREATE TABLE scat(
-   id scat INT AUTO_INCREMENT,
-   libel scat VARCHAR(50),
-   img scat VARCHAR(50),
-   id_cat INT,
-   PRIMARY KEY(id scat),
-   FOREIGN KEY(id_cat) REFERENCES categorie(id_cat)
+   id INT AUTO_INCREMENT,
+   libelle VARCHAR(50),
+   img VARCHAR(50),
+   cat_id INT,
+   PRIMARY KEY(id),
+   FOREIGN KEY(cat_id) REFERENCES cat(id)
 );
 
 CREATE TABLE produit(
-   id_prod INT AUTO_INCREMENT,
-   img_prod VARCHAR(50),
-   libel_prod VARCHAR(100) NOT NULL,
+   id INT AUTO_INCREMENT,
+   img VARCHAR(50),
+   libelle VARCHAR(100) NOT NULL,
    prix_achat_fourn DECIMAL(10,2) NOT NULL,
    prix_vente_ht DECIMAL(10,2) NOT NULL,
    description VARCHAR(200),
-   id_fab INT,
-   id scat INT,
-   PRIMARY KEY(id_prod),
-   FOREIGN KEY(id_fab) REFERENCES fabricant(id_fab),
-   FOREIGN KEY(id scat) REFERENCES ss_cat(id scat)
+   fab_id INT,
+   scat_id INT,
+   PRIMARY KEY(id),
+   FOREIGN KEY(fab_id) REFERENCES fabricant(id),
+   FOREIGN KEY(scat_id) REFERENCES scat(id)
+);
+
+CREATE TABLE commande(
+   id INT AUTO_INCREMENT,
+   date DATE NOT NULL,
+   total DECIMAL(7,2) NOT NULL,
+   PRIMARY KEY(id)
 );
 
 CREATE TABLE utilisateurs(
-   id_util INT AUTO_INCREMENT,
-   nom_entr VARCHAR(50) ,
-   cli_nom VARCHAR(50) NOT NULL,
-   cli_prenom VARCHAR(50) NOT NULL,
+   id INT AUTO_INCREMENT,
+   nom_entr VARCHAR(100) ,
+   prenom VARCHAR(100) NOT NULL,
+   nom VARCHAR(100) NOT NULL,
+   email VARCHAR(100),
+   tel VARCHAR(100),
    coef DECIMAL(2,2) NOT NULL,
    role VARCHAR(1) NOT NULL,
-   util_mdp VARCHAR(50) NOT NULL,
+   mdp VARCHAR(50) NOT NULL,
    com_assignee BOOLEAN,
-   id_util_2 INT,
-   id_com INT,
-   PRIMARY KEY(id_util),
-   FOREIGN KEY(id_util_2) REFERENCES utilisateurs(id_util),
-   FOREIGN KEY(id_com) REFERENCES commande(id_com)
+   responsable_id INT,
+   com_id INT,
+   PRIMARY KEY(id),
+   FOREIGN KEY(responsable_id) REFERENCES utilisateurs(id),
+   FOREIGN KEY(com_id) REFERENCES commande(id)
 );
 
-CREATE TABLE adresses(
-   id_adr INT AUTO_INCREMENT,
-   cli_adr_livr VARCHAR(200) NOT NULL,
-   cli_adr_fact VARCHAR(200) NOT NULL,
-   util_adr VARCHAR(200),
-   id_util INT,
-   PRIMARY KEY(id_adr),
-   FOREIGN KEY(id_util) REFERENCES utilisateurs(id_util)
+CREATE TABLE adresse(
+   id INT AUTO_INCREMENT,
+   adr VARCHAR(250),
+   adr_livr VARCHAR(250) NOT NULL,
+   adr_fact VARCHAR(250) NOT NULL,
+   util_id INT,
+   PRIMARY KEY(id),
+   FOREIGN KEY(util_id) REFERENCES utilisateurs(id)
+);
+
+CREATE TABLE bon_livr(
+   id INT AUTO_INCREMENT,
+   date_livr DATE NOT NULL,
+   com_id INT NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(com_id) REFERENCES commande(id)
 );
 
 CREATE TABLE facture(
-   id_fact INT AUTO_INCREMENT,
+   id INT AUTO_INCREMENT,
    mode_paie VARCHAR(1) NOT NULL,
    prix_ht DECIMAL(6,2) NOT NULL,
    date_emi DATE NOT NULL,
    taux_tva DECIMAL(2,2) NOT NULL,
    prix_tot DECIMAL(6,2) NOT NULL,
-   id_com INT NOT NULL,
-   PRIMARY KEY(id_fact),
-   FOREIGN KEY(id_com) REFERENCES commande(id_com)
+   com_id INT NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(com_id) REFERENCES commande(id)
 );
 
 CREATE TABLE details_bl(
-   id_prod INT,
-   id_bl INT,
+   prod_id INT,
+   bl_id INT,
    qte DECIMAL(5,0) NOT NULL,
-   PRIMARY KEY(id_prod, id_bl),
-   FOREIGN KEY(id_prod) REFERENCES produit(id_prod),
-   FOREIGN KEY (id_bl) REFERENCES bon_livraison(id_bl)
+   PRIMARY KEY(prod_id, bl_id),
+   FOREIGN KEY(prod_id) REFERENCES produit(id),
+   FOREIGN KEY(bl_id) REFERENCES bon_livr(id)
 );
 
-CREATE TABLE details_commande(
-   id_prod INT,
-   id_com INT,
+CREATE TABLE details_com(
+   prod_id INT,
+   com_id INT,
    qte DECIMAL(5,0) NOT NULL,
    prix DECIMAL(6,2) NOT NULL,
-   PRIMARY KEY(id_prod, id_com),
-   FOREIGN KEY(id_prod) REFERENCES produit(id_prod),
-   FOREIGN KEY(id_com) REFERENCES commande(id_com)
+   PRIMARY KEY(prod_id, com_id),
+   FOREIGN KEY(prod_id) REFERENCES produit(id),
+   FOREIGN KEY(com_id) REFERENCES commande(id)
 );

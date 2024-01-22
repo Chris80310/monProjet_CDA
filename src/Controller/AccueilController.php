@@ -16,6 +16,8 @@ class AccueilController extends AbstractController
     private $categorie;
     private $produit;
     private $details;
+    private $top3ventes;
+    private $top3scat;
 
     public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ProduitRepository $top3sc)
     {
@@ -35,28 +37,29 @@ class AccueilController extends AbstractController
         $prod = $this->produit->findAll();
         $top3v = $this->top3ventes->top3ventes();
         $top3sc = $this->top3scat->top3_scat();
-        
+        $det = $this->details->details();
+            
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'utilisateur' => $user,
             'categories' => $cat,
             'produits' => $prod,
             'details' => $det,
-            'top3ventes' => $top3ventes,
-            'top3_sous_cat' => $top3scat
+            'top3ventes' => $top3v,
+            'top3_sous_cat' => $top3sc
         ]);
     }
 
     // Barre de recherche : 
 
     #[Route('/recherche', nom: 'app_search')]
-    public function recherche(ProduitRepository $prod, Request $request): Response
+    public function recherche(Request $request): Response
+    // ProduitRepository $prod, 
     {
         // Initialiser la requête avec le mot-clé de recherche vide
         $request = new Request([
             'recherche' => '',
         ]);
-
         // Récupérez le mot-clé de recherche de la requête HTTP
         $search = $request->request->get('search');
 
@@ -71,7 +74,6 @@ class AccueilController extends AbstractController
             // Afficher un message d'avertissement
             $this->addFlash('warning', "Votre recherche n'a pas abouti.");
         }
-
         // Rendre la vue `accueil/recherche.html.twig` en passant les produits trouvés en paramètre
         return $this->render('accueil/search.html.twig', [
             'controller_name' => 'AccueilController',
