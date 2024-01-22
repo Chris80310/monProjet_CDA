@@ -1,46 +1,56 @@
 <?php
+
 namespace App\Controller;
 
-use App\Repository\DetailRepository;
 use App\Repository\UtilisateursRepository;
 use App\Repository\CatRepository;
-use App\Repository\SCatRepository;
 use App\Repository\ProduitRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
-    class AccueilController extends AbstractController
+class AccueilController extends AbstractController
 {
-    private $user;
-    private $cat;
-    private $scat;
+    private $utilisateur;
+    private $categorie;
     private $produit;
-    // private $detail;
+    private $details;
 
-    public function __construct(UtilisateursRepository $user, ProduitRepository $produit)
-    // DetailRepository $detailRepo
-    // CatRepository $catRepo
+    public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ProduitRepository $top3sc)
     {
-        $this->user = $user;
-        // $this->catRepo = $catRepo;
-        $this->produit = $produit;
-        // $this->detailRepo = $detailRepo;
+        $this->utilisateur = $user;
+        $this->categorie = $cat;
+        $this->produit = $prod;
+        $this->details = $det;
+        $this->top3ventes = $top3v;
+        $this->top3scat = $top3sc;
     }
     
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
+        $user = $this->utilisateur->find(1);
+        $cat = $this->categorie->findAll();
+        $prod = $this->produit->findAll();
+        $top3v = $this->top3ventes->top3ventes();
+        $top3sc = $this->top3scat->top3_scat();
+        
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
+            'utilisateur' => $user,
+            'categories' => $cat,
+            'produits' => $prod,
+            'details' => $det,
+            'top3ventes' => $top3ventes,
+            'top3_sous_cat' => $top3scat
         ]);
     }
 
-        // Barre de recherche : 
+    // Barre de recherche : 
 
     #[Route('/recherche', nom: 'app_search')]
-    public function recherche(ProduitRepository $produit, Request $request): Response
+    public function recherche(ProduitRepository $prod, Request $request): Response
     {
         // Initialiser la requête avec le mot-clé de recherche vide
         $request = new Request([
@@ -51,12 +61,12 @@ use Symfony\Component\Routing\Annotation\Route;
         $search = $request->request->get('search');
 
         // Trouvez les produits correspondants au mot-clé de recherche
-        $produits = $this->produit->findSearch($search);
+        $prod = $this->produit->findSearch($search);
 
         // Vérifiez si des produits ont été trouvés
-        if ($produits){
+        if ($prod){
             // Afficher un message de réussite
-            $this->addFlash('success', "Votre recherche a retourné " . count($produits) . " résultats.");
+            $this->addFlash('success', "Votre recherche a retourné " . count($prod) . " résultats.");
         } else {
             // Afficher un message d'avertissement
             $this->addFlash('warning', "Votre recherche n'a pas abouti.");
@@ -65,12 +75,11 @@ use Symfony\Component\Routing\Annotation\Route;
         // Rendre la vue `accueil/recherche.html.twig` en passant les produits trouvés en paramètre
         return $this->render('accueil/search.html.twig', [
             'controller_name' => 'AccueilController',
-            'produits' => $produits,
+            'produits' => $prod,
         ]);
     }
 
-
-     // Politique de confidentialité : 
+    // Politique de confidentialité : 
 
      #[Route('/confid', name: 'app_confid')]
      public function politique_confidentialite(): Response
@@ -80,7 +89,7 @@ use Symfony\Component\Routing\Annotation\Route;
          ]);
      }
  
-     // Mentions légales :
+    // Mentions légales :
  
      #[Route('/mentions', name: 'app_mentions')]
      public function mentions_legales(): Response
@@ -89,37 +98,6 @@ use Symfony\Component\Routing\Annotation\Route;
              'controller_name' => 'AccueilController',
          ]);
 }
-//     private $userRepo;
-//     private $catRepo;
-//     private $prodRepo;
-//     private $detailRepo;
-
-//     public function __construct(UtilisateursRepository $userRepo, CatRepository $catRepo, ProduitRepository $prodRepo, DetailRepository $detailRepo)
-//     {
-//         $this->userRepo = $userRepo;
-//         $this->catRepo = $catRepo;
-//         $this->prodRepo = $prodRepo;
-//         $this->detailRepo = $detailRepo;
-//     }
-
-//     #[Route('/', name: 'app_accueil')]
-//     public function index(): Response
-//     {
-//         $util = $this->userRepo->find(1);
-//         $categories = $this->catRepo->findAll();
-//         $produit = $this->prodRepo->findAll();
-//         $top3ventes = $this->detailRepo->top3ventes();
-//         $top3_ss_cat = $this->detailRepo->top3_ss_cat();
-
-//         return $this->render('accueil/index.html.twig', [
-//             'controller_name' => 'AccueilController',
-//             'utilisateur' => $userRepo,
-//             'categories' => $categories,
-//             'produit' => $produit,
-//             'top3ventes' => $top3ventes,
-//             'top3_ss_cat' => $top3_ss_cat
-//         ]);
-//     }
 
 }
 

@@ -77,7 +77,7 @@ class ProduitRepository extends ServiceEntityRepository
 
     // Produits par sous-catégories :
 
-    public function prodParSCat($id): array
+    public function prodParScat($id): array
     {
         return $this->createQueryBuilder('p')
             ->where('p.scat = :id')
@@ -91,7 +91,7 @@ class ProduitRepository extends ServiceEntityRepository
     public function prodParFab($id): array
     {
         return $this->createQueryBuilder('p')
-            ->where('p.fab = :id')
+            ->where('p.fabricant = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
