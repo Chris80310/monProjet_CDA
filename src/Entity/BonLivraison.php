@@ -20,6 +20,9 @@ class BonLivraison
     #[ORM\Column]
     private ?int $com_id = null;
 
+    #[ORM\Column]
+    private ?int $adr_livr = null;
+
     #[ORM\ManyToOne(inversedBy: 'bonLivraison')]
     private ?Commande $commande = null;
 
@@ -31,6 +34,18 @@ class BonLivraison
     public function setId(int $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getAdrLivr(): ?int
+    {
+        return $this->adr_livr;
+    }
+
+    public function setAdrLivr(int $adr_livr): static
+    {
+        $this->adr_livr = $adr_livr;
 
         return $this;
     }

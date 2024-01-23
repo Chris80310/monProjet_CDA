@@ -35,6 +35,12 @@ class Produit
     #[ORM\Column]
     private ?int $scat_id = null;
 
+    #[ORM\ManyToOne(targetEntity: Scat::class, inversedBy: 'produit')]
+    #[ORM\JoinColumn(name: 'scat_id', referencedColumnName: 'id')]
+    private ?Scat $scat = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produit')]
+    private ?Fabricant $fabricant = null;
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +133,31 @@ class Produit
     public function setScatId(int $scat_id): static
     {
         $this->scat_id = $scat_id;
+
+        return $this;
+    }
+
+
+    public function getScat(): ?Scat
+    {
+        return $this->scat;
+    }
+
+    public function setScat(?Scat $scat): self
+    {
+        $this->scat = $scat;
+
+        return $this;
+    }
+
+    public function getFabricant(): ?Fabricant
+    {
+        return $this->fabricant;
+    }
+
+    public function setFabricant(?Fabricant $fabricant): static
+    {
+        $this->fabricant = $fabricant;
 
         return $this;
     }

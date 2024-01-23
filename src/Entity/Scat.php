@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ScatRepository;
 use App\Repository\CatRepository;
@@ -19,8 +22,17 @@ class Scat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $img = null;
 
-    #[ORM\Column]
-    private ?int $cat_id = null;
+    #[ORM\ManyToOne(targetEntity: Cat::class, inversedBy: 'scat')]
+    #[ORM\JoinColumn(name: 'cat_id', referencedColumnName: 'id')]
+    private ?Cat $cat = null;
+
+    #[ORM\OneToMany(mappedBy: 'scat', targetEntity: Produit::class, cascade: ['persist', 'remove'])]
+    private Collection $produit;
+
+    public function __construct()
+    {
+        $this->produit = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -58,14 +70,58 @@ class Scat
         return $this;
     }
 
-    public function getCatId(): ?int
+    public function getCat(): ?Cat
     {
-        return $this->cat_id;
+        return $this->cat;
     }
 
-    public function setCatId(int $cat_id): static
+    public function setCat(?Cat $cat): static
     {
-        $this->cat_id = $cat_id;
+        $this->cat = $cat;
+
+        return $this;
+    }
+
+
+    // public function getScat(): ?Scat
+    // {
+    //     return $this->scat;
+    // }
+
+    // public function setScat(?Scat $scat): self
+    // {
+    //     $this->scat = $scat;
+
+    //     return $this;
+    // }
+    
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduit(): Collection
+    {
+        return $this->produit;
+    }
+
+    public function addProduit(Produit $produit): static
+    {
+        if (!$this->produit->contains($produit)) {
+            $this->produit->add($produit);
+            $produit->setScat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): static
+    {
+        if ($this->produit->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getScat() === $this) {
+                $produit->setScat(null);
+            }
+        }
 
         return $this;
     }

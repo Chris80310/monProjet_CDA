@@ -29,6 +29,9 @@ class DetailsCom
     #[ORM\ManyToOne(inversedBy: 'detailsCom')]
     private ?Commande $commande = null;
 
+    #[ORM\ManyToOne(inversedBy: 'detailsCom')]
+    private ?Produit $produit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,19 @@ class DetailsCom
     public function setCommande(?Commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

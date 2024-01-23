@@ -21,6 +21,14 @@ class Fabricant
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
+    #[ORM\OneToMany(mappedBy: 'fabricant', targetEntity: Produit::class)]
+    private Collection $produits;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +54,36 @@ class Fabricant
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): static
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits->add($produit);
+            $produit->setFabricant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): static
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getFabricant() === $this) {
+                $produit->setFabricant(null);
+            }
+        }
 
         return $this;
     }
