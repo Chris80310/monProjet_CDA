@@ -41,7 +41,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $coef = null;
 
     #[ORM\Column(length: 1)]
-    private array $role = [];
+    private array $roles = [];
 
     #[ORM\Column(length: 50)]
     private ?string $mdp = null;
@@ -187,8 +187,8 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guaranti que chaque utilisateurs ont par défaut le ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // guaranti que chaque utilisateurs ont par défaut le ROLEs_USER
+        $roles[] = 'ROLEs_USER';
 
         return array_unique($roles);
     }
