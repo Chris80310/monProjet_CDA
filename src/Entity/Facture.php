@@ -32,6 +32,9 @@ class Facture
     #[ORM\Column]
     private ?int $com_id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'facture')]
+    private ?Commande $commande = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +115,18 @@ class Facture
     public function setIdCom(int $com_id): static
     {
         $this->com_id = $com_id;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
 
         return $this;
     }

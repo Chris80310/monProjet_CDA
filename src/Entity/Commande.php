@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +25,22 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'Commande')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateurs $utilisateurs = null;
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Facture::class)]
+    private Collection $facture;
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: BonLivraison::class)]
+    private Collection $bonLivraison;
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailsCom::class)]
+    private Collection $detailsCom;
+
+    public function __construct()
+    {
+        $this->facture = new ArrayCollection();
+        $this->bonLivraison = new ArrayCollection();
+        $this->detailsCom = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +86,96 @@ class Commande
     public function setUtilisateurs(?Utilisateurs $utilisateurs): static
     {
         $this->utilisateurs = $utilisateurs;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Facture>
+     */
+    public function getFacture(): Collection
+    {
+        return $this->facture;
+    }
+
+    public function addFacture(Facture $facture): static
+    {
+        if (!$this->facture->contains($facture)) {
+            $this->facture->add($facture);
+            $facture->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): static
+    {
+        if ($this->facture->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getCommande() === $this) {
+                $facture->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BonLivraison>
+     */
+    public function getBonLivraison(): Collection
+    {
+        return $this->bonLivraison;
+    }
+
+    public function addBonLivraison(BonLivraison $bonLivraison): static
+    {
+        if (!$this->bonLivraison->contains($bonLivraison)) {
+            $this->bonLivraison->add($bonLivraison);
+            $bonLivraison->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBonLivraison(BonLivraison $bonLivraison): static
+    {
+        if ($this->bonLivraison->removeElement($bonLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($bonLivraison->getCommande() === $this) {
+                $bonLivraison->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailsCom>
+     */
+    public function getDetailsCom(): Collection
+    {
+        return $this->detailsCom;
+    }
+
+    public function addDetailsCom(DetailsCom $detailsCom): static
+    {
+        if (!$this->detailsCom->contains($detailsCom)) {
+            $this->detailsCom->add($detailsCom);
+            $detailsCom->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsCom(DetailsCom $detailsCom): static
+    {
+        if ($this->detailsCom->removeElement($detailsCom)) {
+            // set the owning side to null (unless already changed)
+            if ($detailsCom->getCommande() === $this) {
+                $detailsCom->setCommande(null);
+            }
+        }
 
         return $this;
     }
