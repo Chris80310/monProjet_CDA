@@ -18,3 +18,31 @@
     </ul>
 </div>
 {% endblock %}
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+
+
+    <div class="col-12">
+        <h1>Accueil</h1>
+    </div>
+
+    {% for cat in scats %}
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
+            {# <a href="/cat/{{cat.id}}"> #}
+            <a href="{{ path("app_cat", { cat: cat.id}) }}">
+                <div class="card" style="">
+                    <img src="{{cat.img}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{cat.libelle}}</h5>
+                    </div>
+                </div>            
+            </a>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

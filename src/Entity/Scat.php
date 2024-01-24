@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ScatRepository;
-use App\Repository\CatRepository;
 
 #[ORM\Entity(repositoryClass: ScatRepository::class)]
 class Scat
@@ -23,11 +22,13 @@ class Scat
     private ?string $img = null;
 
     #[ORM\ManyToOne(targetEntity: Cat::class, inversedBy: 'scat')]
-    #[ORM\JoinColumn(name: 'cat_id', referencedColumnName: 'id')]
-    private ?Cat $cat = null;
 
     #[ORM\OneToMany(mappedBy: 'scat', targetEntity: Produit::class, cascade: ['persist', 'remove'])]
     private Collection $produit;
+
+    #[ORM\ManyToOne(inversedBy: 'scat', targetEntity: Cat::class)]
+    #[ORM\JoinColumn(name: 'cat_id', referencedColumnName: 'id')]
+    private ?Cat $cat = null;
 
     public function __construct()
     {
@@ -70,7 +71,7 @@ class Scat
         return $this;
     }
 
-    public function getCat(): ?Cat
+        public function getCat(): ?Cat
     {
         return $this->cat;
     }
@@ -81,20 +82,6 @@ class Scat
 
         return $this;
     }
-
-
-    // public function getScat(): ?Scat
-    // {
-    //     return $this->scat;
-    // }
-
-    // public function setScat(?Scat $scat): self
-    // {
-    //     $this->scat = $scat;
-
-    //     return $this;
-    // }
-    
 
     /**
      * @return Collection<int, Produit>

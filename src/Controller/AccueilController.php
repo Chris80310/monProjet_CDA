@@ -18,16 +18,16 @@ class AccueilController extends AbstractController
     private $produit;
     private $details;
     private $top3ventes;
-    private $top3scat;
+    private $top3sc;
 
-    public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ProduitRepository $top3sc)
+    public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ScatRepository $top3sc)
     {
         $this->utilisateur = $user;
         $this->categorie = $cat;
         $this->produit = $prod;
         $this->details = $det;
         $this->top3ventes = $top3v;
-        $this->top3scat = $top3sc;
+        $this->top3sc = $top3sc;
     }
     
     #[Route('/', name: 'app_accueil')]
@@ -37,7 +37,7 @@ class AccueilController extends AbstractController
         $cat = $this->categorie->findAll();
         $prod = $this->produit->findAll();
         $top3v = $this->top3ventes->top3ventes();
-        $top3sc = $this->top3scat->top3_scat();
+        $top3sc = $this->top3sc->top3_scat();
         $det = $this->details->details();
             
         return $this->render('accueil/index.html.twig', [

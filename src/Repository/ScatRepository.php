@@ -40,6 +40,27 @@ class ScatRepository extends ServiceEntityRepository
         }
     }
 
+     // top 3 sous-catégories :
+
+    public function top3_scat(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('sc');
+
+        $queryBuilder
+            ->select('count(com.id) AS nbr_vente, com.id, com.libelle, com.image')
+            ->leftJoin('sc.produit', 'p')
+            ->leftJoin('p.scat', 'c')
+            ->leftJoin('sc.com', 'cmm')
+            ->where('com.active = :active')
+            ->setParameter('active', true)
+            ->groupBy('com.id')
+            ->orderBy('nbr_vente', 'DESC')
+            ->setMaxResults(3);
+
+        $result = $queryBuilder->getQuery()->getResult();
+        return $result;
+    }
+
     //    /**
     //     * @return Scat[] Returns an array of Scat objects
     //     */

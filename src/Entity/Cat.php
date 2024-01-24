@@ -24,6 +24,13 @@ class Cat
     #[ORM\OneToMany(mappedBy: 'cat', targetEntity: Scat::class)]
     private Collection $scat;
 
+
+
+        public function __construct()
+    {
+        $this->scat = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +41,7 @@ class Cat
     //     $this->id = $id;
 
     //     return $this;
+    
     // }
 
     public function getImgCat(): ?string
@@ -60,23 +68,23 @@ class Cat
         return $this;
     }
 
-    public function getScat(): ?Scat
+        public function getScat(): Collection
     {
         return $this->scat;
     }
 
-    public function setScat(?Scat $scat): static
+    public function setScat(Collection $scat): static
     {
         $this->scat = $scat;
 
         return $this;
     }
 
-    public function addScat(Scat $scat): static
+        public function addScat(Scat $scat): static
     {
         if (!$this->scat->contains($scat)) {
             $this->scat->add($scat);
-            $scat->setScat($this);
+            $scat->setCat($this);
         }
 
         return $this;
@@ -86,12 +94,12 @@ class Cat
     {
         if ($this->scat->removeElement($scat)) {
             // set the owning side to null (unless already changed)
-            if ($scat->getScat() === $this) {
-                $scat->setScat(null);
+            if ($scat->getCat() === $this) {
+                $scat->setCat(null);
             }
         }
 
-        return $this;
-    }
-    
+    return $this;
+}
+
 }
