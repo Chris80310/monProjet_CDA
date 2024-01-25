@@ -188,7 +188,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guaranti que chaque utilisateurs ont par défaut le ROLEs_USER
-        $roles[] = 'ROLEs_USER';
+        $roles[] = 'ROLES_USER';
 
         return array_unique($roles);
     }

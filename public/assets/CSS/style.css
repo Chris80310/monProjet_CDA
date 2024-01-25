@@ -2,7 +2,7 @@
 .bg-header{
     
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPlSXmeFQU31vCejQE_GqMyVZHX9IjiT7xp0Jl-e0G0lyrvGTT6uMaF9JuocLjvuxkAec&usqp=CAU"); */
-    background-image: url("/assets/img/bannière.jpeg");
+    background-image: url("/assets/img/background/bannière.jpeg");
     
     background-size: cover;
     text-align:center;

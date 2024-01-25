@@ -15,15 +15,17 @@ class AccueilController extends AbstractController
 {
     private $utilisateur;
     private $categorie;
+    private $s_categorie;
     private $produit;
     private $details;
     private $top3ventes;
     private $top3sc;
 
-    public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ScatRepository $top3sc)
+    public function __construct(UtilisateursRepository $user, CatRepository $cat, ProduitRepository $prod, ProduitRepository $det, ProduitRepository $top3v, ScatRepository $scat, ScatRepository $top3sc)
     {
-        $this->utilisateur = $user;
+        // $this->utilisateur = $user;
         $this->categorie = $cat;
+        $this->s_categorie = $scat;
         $this->produit = $prod;
         $this->details = $det;
         $this->top3ventes = $top3v;
@@ -33,27 +35,29 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
-        $user = $this->utilisateur->find(1);
+        // $user = $this->utilisateur->find(1);
         $cat = $this->categorie->findAll();
+        $scat = $this->s_categorie->findAll();
         $prod = $this->produit->findAll();
-        $top3v = $this->top3ventes->top3ventes();
-        $top3sc = $this->top3sc->top3_scat();
-        $det = $this->details->details();
+        // $top3v = $this->top3ventes->top3ventes();
+        // $top3sc = $this->top3sc->top3_scat();
+        // $det = $this->details->details();
             
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
-            'utilisateur' => $user,
+            // 'utilisateur' => $user,
             'categories' => $cat,
+            'sous_categories' => $scat,
             'produits' => $prod,
-            'details' => $det,
-            'top3ventes' => $top3v,
-            'top3_sous_cat' => $top3sc
+            // 'details' => $det,
+            // 'top3ventes' => $top3v,
+            // 'top3_sous_cat' => $top3sc
         ]);
     }
 
     // Barre de recherche : 
 
-    #[Route('/recherche', nom: 'app_search')]
+    #[Route('/recherche', name: 'app_search')]
     public function recherche(Request $request): Response
     // ProduitRepository $prod, 
     {

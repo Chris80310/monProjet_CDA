@@ -38,7 +38,7 @@ class CatRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
      // sous-catégories par catégories :
 
      public function scatParCat($id): array

@@ -128,23 +128,23 @@ class ProduitRepository extends ServiceEntityRepository
 
     // top 3 ventes :
 
-    public function top3ventes(): array
-    {
-        $queryBuilder = $this->createQueryBuilder('d');
+    // public function top3ventes(): array
+    // {
+    //     $queryBuilder = $this->createQueryBuilder('t');
 
-        $queryBuilder
-            ->select('count(p.id) AS nbr_vente, p.id, p.libelle, p.image')
-            ->leftJoin('d.produit', 'p')
-            ->leftJoin('d.commande', 'c')
-            ->where('c.etat = :etat')
-            ->setParameter('etat', 3)
-            ->groupBy('p.id')
-            ->orderBy('nbr_vente', 'DESC')
-            ->setMaxResults(3);
+    //     $queryBuilder
+    //         ->select('count(p.id) AS nbr_vente, p.id, p.libelle, p.image')
+    //         ->leftJoin('t.produit', 'p')
+    //         ->leftJoin('t.commande', 'c')
+    //         ->where('c.etat = :etat')
+    //         ->setParameter('etat', 3)
+    //         ->groupBy('p.id')
+    //         ->orderBy('nbr_vente', 'DESC')
+    //         ->setMaxResults(3);
 
-        $result = $queryBuilder->getQuery()->getResult();
-        return $result;
-    }
+    //     $result = $queryBuilder->getQuery()->getResult();
+    //     return $result;
+    // }
 
     // Barre de recherche :
 

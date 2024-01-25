@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
-
+{# {% block title %}Hello AccueilController!{% endblock %} #}
+{# 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -17,27 +17,24 @@
         <li>Your template at <code><a href="{{ '/home/christopher/Documents/GitHub/monProjet_CDA/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
     </ul>
 </div>
-{% endblock %}
-{% extends 'base.html.twig' %}
-
+{% endblock %} #}
 
 {% block body %}
-
-
-
 
     <div class="col-12">
         <h1>Accueil</h1>
     </div>
 
-    {% for cat in scats %}
+    {% for cat in categories %}
         <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
             {# <a href="/cat/{{cat.id}}"> #}
-            <a href="{{ path("app_cat", { cat: cat.id}) }}">
+            {# <a href="{{ path('app_scat', { scat: scat.id}) }}"> #}
+            <a href="{{ path('app_cat', {'id': cat.id}) }}">
                 <div class="card" style="">
-                    <img src="{{cat.img}}" class="card-img-top" alt="...">
+                    {# <img src="{{'/images_the_district/category' ~ cat.img}}" class="card-img-top" alt="..."> #}
                     <div class="card-body">
-                        <h5 class="card-title">{{cat.libelle}}</h5>
+                        {# <h5 class="card-title">{{cat.libelle}}</h5> #}
+                        {# <div class="card-title">{{cat.img}}</div> #}
                     </div>
                 </div>            
             </a>
