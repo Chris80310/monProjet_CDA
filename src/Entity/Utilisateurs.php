@@ -5,11 +5,42 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+// use App\Repository\UserRepository;
 use App\Repository\UtilisateursRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
+
+    // #[ORM\Column(length: 180, unique: true)]
+    // private ?string $email = null;
+
+    // #[ORM\Column]
+    // private array $roles = [];
+
+    // /**
+    //  * @var string The hashed password
+    //  */
+    // #[ORM\Column]
+    // private ?string $password = null;
+
+    // public function getId(): ?int
+    // {
+    //     return $this->id;
+    // }
+
+    // public function getEmail(): ?string
+    // {
+    //     return $this->email;
+    // }
+
+    // public function setEmail(string $email): static
+    // {
+    //     $this->email = $email;
+
+    //     return $this;
+    // }
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
 class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
@@ -57,6 +88,9 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresse::class)]
     private Collection $Adresse;
+
+    // #[ORM\Column]
+    // private ?string $password = null;
 
     // #[ORM\Column]
     // private ?int $resp = null;
@@ -138,33 +172,6 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    // public function getAdress(): Collection
-    // {
-    //     return $this->adr;
-    // }
-
-    // public function addAdress(Adr $adr): static
-    // {
-    //     if (!$this->adr->contains($adr)) {
-    //         $this->adr->add($adr);
-    //         $adr->setUtilisateur($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeAdress(Adr $adr): static
-    // {
-    //     if ($this->adr->removeElement($adr)) {
-    //         //définir le côté propriétaire sur null (sauf si déjà modifié)
-    //         if ($adr->getUtilisateur() === $this) {
-    //             $adr->setUtilisateur(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
 
     public function getUserIdentifier(): string
     {
@@ -315,4 +322,20 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+     /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    // public function getPassword(): string
+    // {
+    //     return $this->password;
+    // }
+
+    // public function setPassword(string $password): static
+    // {
+    //     $this->password = $password;
+
+    //     return $this;
+    // }
+
 }

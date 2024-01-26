@@ -17,7 +17,7 @@
 					{% endfor %}
 				</div>
 
-				{% for prod in produit %}
+				{# {% for prod in produit %}
 
 					<div class="m-auto my-5" id="" style="width: 18rem; background-color:purple; border-radius:10px; padding:10px">
 						<span class="d-block text-center text-white mb-3">
@@ -45,34 +45,8 @@
 							</a>
 						</span>
 					</div>
-					{# 
-																																																		<div class="m-auto my-5" id="" style="width: 18rem; background-color:purple; border-radius:10px; padding:10px">
-																																																			<span class="d-block text-center text-white mb-3">
-																																													
-																																																				<h5 class="text-center my-3">
-																																																					<strong>"
-																																																						{{ plat.libelle |upper }}
-																																																						"</strong>
-																																																				</h5>
-																																																				<img src="{{'/images_the_district/food/' ~ plat.image}}" alt="image" srcset="" class="card-img-top img-fluid" style="border-radius:10px;">
-																																													
-																																																				<h5 class="text-center mt-3">
-																																																					<strong>"{{ plat.description}}"</strong>
-																																																				</h5>
-																																																				<h5 class="text-center my-3">
-																																																					<strong>{{ plat.prix / 100 }}
-																																																						&euro;
-																																																					</strong>
-																																																				</h5>
-																																																				{% if plat.active > 0 %}
-																																																					<a href="{{ path('panier_add', {id: plat.id}) }}" class="btn btn-success">Ajouter au panier</a>
-																																																				{% else %}
-																																																					<p class="text-danger">Temporairement en rupture de stock</p>
-																																																				{% endif %}
-																																																			</span>
-																																																		</div> #}
 
-				{% endfor %}
+				{% endfor %} #}
 			</div>
 		</div>
 	</div>
