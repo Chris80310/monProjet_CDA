@@ -4,9 +4,8 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-// use App\Repository\UserRepository;
 use App\Repository\UtilisateursRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -43,6 +42,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
     // }
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
+
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
