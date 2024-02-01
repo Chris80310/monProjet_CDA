@@ -78,6 +78,30 @@ class Commande
         return $this;
     }
 
+     // public function getAdrLivr(): ?string
+    // {
+    //     return $this->adr_livr;
+    // }
+
+    // public function setAdrLivr(string $adr_livr): static
+    // {
+    //     $this->adr_livr = $adr_livr;
+
+    //     return $this;
+    // }
+
+    // public function getAdrFact(): ?string
+    // {
+    //     return $this->adr_fact;
+    // }
+
+    // public function setAdrFact(string $adr_fact): static
+    // {
+    //     $this->adr_fact = $adr_fact;
+
+    //     return $this;
+    // }
+
     public function getUtilisateurs(): ?Utilisateurs
     {
         return $this->utilisateurs;

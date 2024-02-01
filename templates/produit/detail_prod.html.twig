@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-12">
+        <h1>{{produit.libelle}}</h1>
+    </div>
+
+    <img src="{{produit.image}}" alt="" srcset="">
+
+    <div class="col-12">
+        {{produit.description}}
+    </div>
+
+{% endblock %}
+

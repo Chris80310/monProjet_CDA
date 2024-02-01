@@ -14,6 +14,9 @@ class Adresse
     #[ORM\Column]
     private ?int $id = null;
 
+    // #[ORM\Column]
+    // private ?int $libelle = null;
+
     #[ORM\Column]
     private ?int $util_id = null;
 
@@ -29,11 +32,13 @@ class Adresse
     #[ORM\ManyToOne(inversedBy: 'Adresse')]
     private ?Utilisateurs $utilisateurs = null;
 
+    // #[ORM\ManyToMany(inversedBy: 'Adresse')]
+    // private ?Utilisateurs $utilisateurs = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     // public function setId(int $id): static
     // {
@@ -41,6 +46,7 @@ class Adresse
 
     //     return $this;
     // }
+
 
     public function getUtilId(): ?int
     {
@@ -54,6 +60,7 @@ class Adresse
     //     return $this;
     // }
 
+
     public function getAdr(): ?string
     {
         return $this->adr;
@@ -65,6 +72,19 @@ class Adresse
 
         return $this;
     }
+
+
+    // public function getAdrLibelle(): ?string
+    // {
+    //     return $this->libelle;
+    // }
+
+    // public function setAdrLibelle(string $libelle): static
+    // {
+    //     $this->libelle = $libelle;
+
+    //     return $this;
+    // }
 
     public function getAdrLivr(): ?string
     {
@@ -99,5 +119,10 @@ class Adresse
     {
         $this->utilisateurs = $utilisateurs;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->adr;
     }
 }

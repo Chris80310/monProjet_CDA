@@ -91,6 +91,11 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateurs', targetEntity: Adresse::class)]
     private Collection $Adresse;
 
+    // #[ORM\ManyToMany(mappedBy: 'utilisateurs', targetEntity: Adresse::class)]
+    // #[ORM\ManyToMany(targetEntity: "Adresse", inversedBy: "utilisateurs")]
+    // #[ORM\JoinTable(name: "adresse")]
+    // private Collection $Adresse;
+
     // #[ORM\Column]
     // private ?string $password = null;
 
