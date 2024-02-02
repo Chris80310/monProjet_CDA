@@ -7,6 +7,7 @@ use App\Repository\ScatRepository;
 use App\Repository\UtilisateursRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,25 +29,25 @@ class ProduitController extends AbstractController
         $this->produit = $produit;
     }
 
-    #[Route('/produit', name: 'app_produit')]
-    public function produit(): Response
-    {
-        return $this->render('produit/index.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
+    // #[Route('/produit', name: 'app_produit')]
+    // public function produit(): Response
+    // {
+    //     return $this->render('produit/index.html.twig', [
+    //         'controller_name' => 'ProduitController',
+    //     ]);
+    // }
 
-      // produit par id : 
+    //   produit par id : 
 
-      #[Route('/produit/{id}', name: 'app_produit')]
-      public function prodParId(ScatRepository $scat): Response
+      #[Route('/produit', name: 'app_produit')]
+      public function prodParId(ScatRepository $scat, Request $request): Response
       {
-          $scat = $this->scat->find($scat);
-          $produit = $this->produit->prodParSCat($scat->getId());
+          $scat = $request->query->get('id');
+          $produit = $this->produit->prodParScat($scat);
   
-          // dd($produit);
+          dd($produit);
   
-          return $this->render('produits/prodParCat.html.twig', [
+          return $this->render('produit/index.html.twig', [
               'controller_name' => 'AccueilController',
               'produit' => $produit
           ]);
@@ -54,14 +55,14 @@ class ProduitController extends AbstractController
   
       // Details prod :
   
-      #[Route('/produit/{id}', name: 'detail_prod')]
-      public function DetailProd(ProduitRepository $produit): Response
-        {
-            $produit = $this->produit->find($produit);
+    //   #[Route('/produit/{id}', name: 'detail_prod')]
+    //   public function DetailProd(ProduitRepository $produit): Response
+    //     {
+    //         $produit = $this->produit->find($produit);
 
-            return $this->render('produit/detail_prod.html.twig', [
-                'controller_name' => 'ProduitController',
-                'produit' => $produit
-            ]);
-        }
+    //         return $this->render('produit/detail_prod.html.twig', [
+    //             'controller_name' => 'ProduitController',
+    //             'produit' => $produit
+    //         ]);
+    //     }
 }

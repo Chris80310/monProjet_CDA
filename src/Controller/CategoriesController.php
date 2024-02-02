@@ -37,7 +37,6 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-
     #[Route('/sous-categories', name: 'app_scat')]
     public function app_scat(Request $request): Response
     {

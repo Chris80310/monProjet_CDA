@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div class="col-12">
+    {# <div class="col-12">
         <h1>{{produit.libelle}}</h1>
     </div>
 
@@ -10,7 +10,34 @@
 
     <div class="col-12">
         {{produit.description}}
+    </div> #}
+
+     <div class="col-12">
+        {# <h1>{{produit.libelle}}</h1> #}
+        <h1>Produits</h1>
     </div>
+
+    {# {% for pr in produit.produits %} #}
+    {% for produit in produits %}
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
+            {# <a href="/produits/{{s_categories.id}}"> #}
+            <a href="{{path('app_produit', {"id" : produit.id })}}">
+            {# <pre>
+                {{ dump(categorie) }}
+            </pre> #}
+                {# <a href="{{categorie.id}}"> #}
+                <div class="card" style="">
+                    <img src="{{asset ('assets/img/produits/' ~ produit.getImgProd)}}" alt="image" srcset="" class="card-img-top img-fluid">
+    
+                    <div class="card-body">
+                        {# <h5 class="card-title">{{ categorie.libelle }}</h5> #}
+                        <h5 class="card-title">{{ produit.getLibelle() }}</h5>
+                    </div>
+               
+                </div>            
+            </a>
+        </div>
+    {% endfor %}
 
 {% endblock %}
 

@@ -10,17 +10,22 @@
     </div>
 
     {# {% for sc in categorie.sousCategories %} #}
-    {% for s_categorie in s_categories %}
+    {% for scat in scats %}
         <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
             {# <a href="/produits/{{s_categories.id}}"> #}
-            <a href="{{path('app_scat()', {"id" : s_categorie.id })}}">
+            <a href="{{path('app_produit', {"id" : scat.id })}}">
+            {# <pre>
+                {{ dump(categorie) }}
+            </pre> #}
                 {# <a href="{{categorie.id}}"> #}
                 <div class="card" style="">
-                    <img src="{{asset ('assets/img/scat/' ~ categorie.getImgScat())}}" alt="image" srcset="" class="card-img-top img-fluid">
+                    <img src="{{asset ('assets/img/s_cat/' ~ scat.getImg)}}" alt="image" srcset="" class="card-img-top img-fluid">
+    
                     <div class="card-body">
                         {# <h5 class="card-title">{{ categorie.libelle }}</h5> #}
-                        <h5 class="card-title">{{ s_categorie.getLibelleScat() }}</h5>
+                        <h5 class="card-title">{{ scat.getLibelle() }}</h5>
                     </div>
+               
                 </div>            
             </a>
         </div>
