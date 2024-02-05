@@ -2,15 +2,51 @@
 
 {% block body %}
 
-    <div class="col-12">
-        <h1>{{produit.libelle}}</h1>
+    {# <div class="col-12">
+        <h1>{{produits.libelle}}</h1>
     </div>
 
-    <img src="{{produit.image}}" alt="" srcset="">
+    <img src="{{produit.img}}" alt="" srcset="">
 
     <div class="col-12">
-        {{produit.description}}
-    </div>
+        {{produits.description}}
+    </div> #}
+
+    <div class="container col-xs-7 col-12 div_cat mt-5 py-5">
+
+		<div class="d-flex flex-wrap liste_cat">
+			<div class="m-auto my-5" id="" style="width: 18rem; background-color:purple; border-radius:10px; padding:10px">
+				<span class="d-block text-center text-white mb-3">
+
+					<h5 class="text-center my-3">
+						<strong>"
+							{{ produit.libelle |upper }}
+							"</strong>
+					</h5>
+					<img src="{{('/public/assets/produits' ~ produit.getImgProd())}}" alt="image" class="card-img-top img-fluid" style="border-radius:10px;">
+
+					<h5 class="text-center mt-3">
+						<strong>"{{ produit.description }}"</strong>
+					</h5>
+
+                    <pre>
+                        {{ dump(produit) }}
+                    </pre>
+
+					<h5 class="text-center my-3">
+						<strong>{{ produit.getPrixVenteHt() }}
+							&euro;
+						</strong>
+					</h5>
+					{# {% if produits.active > 0 %}
+						<a href="{{ path('panier_add', {id: produits.id}) }}" class="btn btn_cart">Ajouter au panier</a>
+					{% else %}
+						<p class="text-danger">Temporairement en rupture de stock</p>
+					{% endif %} #}
+				</span>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
 

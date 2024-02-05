@@ -21,7 +21,7 @@
     {% for produit in produits %}
         <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
             {# <a href="/produits/{{s_categories.id}}"> #}
-            <a href="{{path('app_produit', {"id" : produit.id })}}">
+            <a href="{{path('detail_prod', {"id" : produit.id })}}">
             {# <pre>
                 {{ dump(categorie) }}
             </pre> #}

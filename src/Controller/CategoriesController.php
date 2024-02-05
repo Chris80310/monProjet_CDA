@@ -44,7 +44,7 @@ class CategoriesController extends AbstractController
         $scats = $this->s_categories->findBy(['cat' => $categorie_id]);
 
         return $this->render('categories/scat.html.twig', [
-            'controller_name' => 'ScatController',
+            'controller_name' => 'CategoriesController',
             'scats' => $scats,
         ]);
     }
