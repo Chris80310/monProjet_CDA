@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="col-2 m-auto" style="background-color:purple">
-				<li class="#">
+				{# <li class="#">
 					<a class="nav-link m-5" style="color:white" name="connect" id="connect" href="">
 						<span>
 							<strong>
@@ -46,7 +46,7 @@
 							</strong>
 						</span>
 					</a>
-				</li>
+				</li> #}
 
 					{# {% if app.user %}
 						<li class="nav-item">
@@ -63,15 +63,15 @@
 								<strong>Deconnexion</strong>
 							</a>
 						</li>
-					{% else %}
+					{% else %} #}
 						<li class="nav-item">
-							<a class="nav-link mx-5" style="color:white" name="connect" id="connect" href="">
+							<a class="nav-link mx-5" style="color:white" name="connect" id="connect" href="{{path ('app_login')}}">
 								<span>
 									<strong>Connexion</strong>
 								</span>
 							</a>
 						</li>
-					{% endif %} #}
+					{# {% endif %} #}
 
 				<li class="#">
 					<a class="nav-link my-5" style="color:white" href="">
@@ -176,11 +176,11 @@
 		</div>
 	</header>
 </body>
-{% for message in app.flashes('success') %}
+{# {% for message in app.flashes('success') %}
 	<div class="alert alert-success" id="alert-div">
 		{{ message }}
 	</div>
-{% endfor %}
+{% endfor %} #}
 {% block body %}{% endblock %}
 
 <footer
@@ -230,7 +230,7 @@
 
 </html>
 <script>
-	// je regarde dans le document (->$(document))
+// je regarde dans le document (->$(document))
 // je lance la function (ready(function))
 // au bout de tant de temps setTimeOut
 // je regarde dans la div qui a comme id alertdiv # correspont a id et . qui est la classe
