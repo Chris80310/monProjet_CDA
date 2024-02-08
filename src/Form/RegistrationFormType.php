@@ -8,6 +8,7 @@ use App\Entity\Utilisateurs;
 // use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -27,7 +28,16 @@ class RegistrationFormType extends AbstractType
             ->add('nom', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'nom'])
             ->add('prenom', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'prenom'])
             ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'email'])
-            ->add('adresse', EntityType::class, [ 'class' => Adresse::class, 'attr' => [ 'class' => 'form-control'], 'label' => 'adresse', 'multiple' => true])
+            // ->add('adresse', TextType::class, ['attr' => [ 'class' => 'form-control'], 'label' => 'adresse'])
+            ->add('livraison', TextType::class, ['label' => 'Adresse de livraison'])
+            ->add('checkbox', CheckboxType::class, [
+                'label' => 'Utiliser l\'adresse de livraison pour celle de facturation',
+                'required' => false,
+                'mapped' => false
+            ])
+            ->add('facturation', TextType::class, [ 'label' => 'Adresse de facturation', 'required' => false
+            ])
+            ->add('Enregistrer', SubmitType::class)
             // ->add('tel', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'tel'])
             // ->add('zipcode', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'code postal'])
             // ->add('ville', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'ville'])

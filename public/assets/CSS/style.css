@@ -9,3 +9,41 @@
     margin:auto;
     display:flex;
 }
+
+body {
+    background: url("/images_the_district/food/spaghetti-legumes.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    /* height: 100%;  */
+}
+
+header {
+    background: url("/images_the_district/bg1.jpeg");
+    background-size: cover;
+    height: auto;
+}
+
+a {
+    color: aliceblue;
+}
+
+.navbarNav {
+    background-color: purple;
+}
+
+.btn_menu {
+    color: purple;
+}
+
+
+.bg_li {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+}
+
+#titre_header {
+    color: white;
+}
