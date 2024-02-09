@@ -29,8 +29,8 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $fab_id = null;
+    // #[ORM\Column]
+    // private ?int $fab_id = null;
 
     #[ORM\Column]
     private ?int $scat_id = null;
@@ -113,17 +113,17 @@ class Produit
         return $this;
     }
 
-    public function getFabId(): ?int
-    {
-        return $this->fab_id;
-    }
+    // public function getFabId(): ?int
+    // {
+    //     return $this->fab_id;
+    // }
 
-    public function setFabId(int $fab_id): static
-    {
-        $this->fab_id = $fab_id;
+    // public function setFabId(int $fab_id): static
+    // {
+    //     $this->fab_id = $fab_id;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getScatId(): ?int
     {

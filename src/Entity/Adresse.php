@@ -24,10 +24,10 @@ class Adresse
     private ?string $adr = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_livr = null;
+    private ?string $livraison = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_fact = null;
+    private ?string $facturation = null;
 
     #[ORM\ManyToOne(inversedBy: 'Adresse')]
     private ?Utilisateurs $utilisateurs = null;
@@ -88,24 +88,24 @@ class Adresse
 
     public function getAdrLivr(): ?string
     {
-        return $this->adr_livr;
+        return $this->livraison;
     }
 
-    public function setAdrLivr(string $adr_livr): static
+    public function setAdrLivr(string $livraison): static
     {
-        $this->adr_livr = $adr_livr;
+        $this->livraison = $livraison;
 
         return $this;
     }
 
-    public function getAdrFact(): ?string
+    public function getAdrFacturation(): ?string
     {
-        return $this->adr_fact;
+        return $this->facturation;
     }
 
-    public function setAdrFact(string $adr_fact): static
+    public function setAdrFacturation(string $facturation): static
     {
-        $this->adr_fact = $adr_fact;
+        $this->facturation = $facturation;
 
         return $this;
     }

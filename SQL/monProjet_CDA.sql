@@ -156,7 +156,7 @@ DELETE FROM `messenger_messages`;
 CREATE TABLE IF NOT EXISTS `produit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `scat_id` int(11) NOT NULL,
-  `fabricant_id` int(11) DEFAULT NULL,
+  `fabricant_id` int(11) INT NULL,
   `img` varchar(255) DEFAULT NULL,
   `libelle` varchar(255) NOT NULL,
   `prix_ach_fourn` decimal(10,2) NOT NULL,
