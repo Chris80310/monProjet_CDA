@@ -24,39 +24,26 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('nom_entr', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'nom de société'])
-            ->add('nom', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'nom'])
-            ->add('prenom', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'prenom'])
-            ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'email'])
-            // ->add('adresse', TextType::class, ['attr' => [ 'class' => 'form-control'], 'label' => 'adresse'])
-            ->add('livraison', TextType::class, ['label' => 'Adresse de livraison'])
+            // ->add('nom_entr', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'nom de société :'])
+            ->add('nom', TextType::class, [ 'attr' => [ 'class' => 'form-control my-3'], 'label' => 'nom :'])
+            ->add('prenom', TextType::class, [ 'attr' => [ 'class' => 'form-control my-3'], 'label' => 'prenom :'])
+            ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control my-3'], 'label' => 'email :'])
+            ->add('livraison', TextType::class, [ 'attr' => [ 'class' => 'form-control my-3'],'label' => 'Adresse de livraison :'])
+            ->add('facturation', TextType::class, [ 'attr' => [ 'class' => 'form-control  mb-5 mt-3'], 'label' => 'Adresse de facturation :', 'required' => false ])
             ->add('checkbox', CheckboxType::class, [
-                'label' => 'Utiliser l\'adresse de livraison pour celle de facturation',
+                'attr' => [ 'class' => 'm-3',
+                'id' => 'check_fact'
+            ],
+                'label' => 'Utiliser la meme adresse pour la facturation',
                 'required' => false,
                 'mapped' => false
             ])
-            ->add('facturation', TextType::class, [ 'label' => 'Adresse de facturation', 'required' => false
-            ])
-            ->add('Enregistrer', SubmitType::class)
-            // ->add('tel', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'tel'])
-            // ->add('zipcode', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'code postal'])
-            // ->add('ville', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'ville'])
-     
-            // ->add('RGPDConsent', CheckboxType::class, [
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-                'label' => 'En m\'inscrivant à ce site, j\'accepte les conditions générales du site'
-            ])
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control mb-5 mt-3'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -69,6 +56,18 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'label' => 'Mot de passe : '
+            ])
+     
+            // ->add('RGPDConsent', CheckboxType::class, [
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+                'attr' => [ 'class' => 'mx-3'],
+                'label' => 'En m\'inscrivant à ce site, j\'accepte les conditions générales du site'
             ])
         ;
     }

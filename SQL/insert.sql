@@ -9,6 +9,7 @@ INSERT INTO adresse (adr, util_id) VALUES ('25 rue des bleuets 80000 amiens', 1)
 INSERT INTO fabricant (id, nom) VALUES (1, 'AMD'); 
 INSERT INTO fabricant (id, nom) VALUES (2, 'NVIDIA'); 
 INSERT INTO fabricant (id, nom) VALUES (3, 'INTEL'); 
+INSERT INTO fabricant (id, nom) VALUES (4, ''); 
 
 INSERT INTO cat (id, libelle) VALUES (1, 'Ordinateurs'); 
 INSERT INTO cat (id, libelle) VALUES (2, 'Composants'); 

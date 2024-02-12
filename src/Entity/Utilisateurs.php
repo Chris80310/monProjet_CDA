@@ -61,6 +61,12 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $prenom = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $livraison = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facturation = null;
+
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -179,6 +185,31 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getLivraison(): ?string
+    {
+        return $this->livraison;
+    }
+
+    public function setLivraison(?string $livraison): static
+    {
+        $this->livraison = $livraison;
+
+        return $this;
+    }
+
+    public function getFacturation(): ?string
+    {
+        return $this->facturation;
+    }
+
+    public function setFacturation(?string $facturation): static
+    {
+        $this->facturation = $facturation;
+
+        return $this;
+    }
+
 
     public function getUserIdentifier(): string
     {
