@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-// use App\Entity\User;
 use App\Entity\Utilisateurs;
 use App\Form\RegistrationFormType;
-use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -14,19 +12,33 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use App\Security\UsersAuthenticator;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private UsersAuthenticator $userAuthenticator;
 
+
+    public function __construct(EmailVerifier $emailVerifier, UsersAuthenticator $userAuthenticator)
+    {
+        $this->emailVerifier = $emailVerifier;
+        $this->userAuthenticator = $userAuthenticator;
+    }
+
+    // #[Route('/inscription', name: 'app_register')]
+    // public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, 
+    // EntityManagerInterface $entityManager): Response
+    // {
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, 
-    EntityManagerInterface $entityManager): Response
-    {
+    EntityManagerInterface $entityManager, UserAuthenticatorInterface $authenticator): Response
+    
+    {       
         $user = new Utilisateurs();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -55,11 +67,16 @@ class RegistrationController extends AbstractController
 
             // return $this->redirectToRoute('app_accueil');
 
-            // return $userAuthenticator->authenticateUser(
+            // return $this->userAuthenticator->authenticateUser(
             //     $user,
             //     $authenticator,
             //     $request
             // );
+
+            // Rediriger l'utilisateur vers la page de connexion
+            $this->addFlash('success', 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.');
+            return $this->redirectToRoute('app_login');
+        
         }
 
         return $this->render('registration/register.html.twig', [

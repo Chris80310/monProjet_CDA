@@ -31,7 +31,15 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ informations.email }}</td>
+                        <td>{{ informations.prenom }}</td>
+                        <td>{{ informations.nom }}</td>
+                        {# <td>{{ informations.email }}</td> #}
+                        {# <td>{{ informations.adresse }}</td>
+                        <td>{{ informations.email }}</td> #}
+
+                        {% for adresse in informations.adresse %}
+                          <td>{{ adresse }}</td>
+                        {% endfor %}
 
                         {% for role in informations.roles %}
                           <td>{{ role }}</td>

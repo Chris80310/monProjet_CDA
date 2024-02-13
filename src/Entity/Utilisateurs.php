@@ -70,7 +70,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 50, unique: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $tel = null;
 
     // #[ORM\Column(length: 180, unique: true)]
@@ -82,7 +82,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 1)]
     private array $roles = [];
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $mdp = null;
 
     #[ORM\Column(nullable: true)]
@@ -118,13 +118,6 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-
-    // public function setId(int $id): static
-    // {
-    //     $this->id = $id;
-
-    //     return $this;
-    // }
 
     public function getNomEntr(): ?string
     {
