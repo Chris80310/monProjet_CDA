@@ -67,6 +67,38 @@ class UtilisateursRepository extends ServiceEntityRepository
        ;
    }
 
+    public function userCommande($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('c.id AS commande_id, c.date_commande, c.total, c.etat')
+            ->leftJoin('u.commandes', 'c')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+    public function detailsCommande($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('c.id AS commande_id, dc.quantite, p.titre')
+            ->leftJoin('u.commandes', 'c')
+            ->leftJoin('c.detailsCommandes', 'dc')
+            ->leftJoin('dc.produit', 'p')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function userAdresse($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('a.id AS adresse_id, a.livraison, a.facturation')
+            ->leftJoin('u.adresses', 'a')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Utilisateurs[] Returns an array of Utilisateurs objects
     //     */

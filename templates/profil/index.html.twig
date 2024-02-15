@@ -25,21 +25,28 @@
                 <table class="table table-light table-hover">
                     <thead>
                     <tr>
+                        <th>Prenom</th>
+                        <th>Nom</th>
                         <th>Email</th>
-                        <th colspan="2">Rôles</th>
+                        <th colspan="2">Rôle(s)</th>
+                        <th>Adresse</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ informations.prenom }}</td>
-                        <td>{{ informations.nom }}</td>
-                        {# <td>{{ informations.email }}</td> #}
-                        {# <td>{{ informations.adresse }}</td>
-                        <td>{{ informations.email }}</td> #}
+                        <td>{{ informations.prenom }}
+                        <td>{{ informations.nom }}
+                        <td>{{ informations.email }}
+                        {# <br><br><button href="" class="#">Modifier l'email</button> #}
+                        </td>
 
                         {% for adresse in informations.adresse %}
-                          <td>{{ adresse }}</td>
+                            <td>{{ adresse }}</td>
                         {% endfor %}
+                        
+                        {# {% for adresse in informations.adresse %}
+                          <td>{{ adresse }}</td>
+                        {% endfor %} #}
 
                         {% for role in informations.roles %}
                           <td>{{ role }}</td>

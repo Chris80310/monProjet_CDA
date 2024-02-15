@@ -32,6 +32,7 @@ class ProfilController extends AbstractController
         if($identifiant){
             // ICI on vérifie qu'on a bien un utilisateur dans la base de donnée qui a ce mail :
             $info = $this->userRepo->findOneBy(["email" =>$identifiant]); 
+            // $info = $this->userRepo->find($identifiant);
         }
 
         return $this->render('profil/index.html.twig', [
