@@ -31,7 +31,7 @@ class AccueilController extends AbstractController
         $this->top3ventes = $top3v;
         $this->top3sc = $top3sc;
     }
-    
+
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
@@ -42,11 +42,11 @@ class AccueilController extends AbstractController
         // $top3v = $this->top3ventes->top3ventes();
         // $top3sc = $this->top3sc->top3_scat();
         // $det = $this->details->details();
-            
+
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             // 'utilisateur' => $user,
-            'categories' => $cat,
+            'categorie' => $cat,
             'sous_categories' => $scat,
             'produits' => $prod,
             // 'details' => $det,
@@ -72,7 +72,7 @@ class AccueilController extends AbstractController
         $prod = $this->produit->findSearch($search);
 
         // Vérifiez si des produits ont été trouvés
-        if ($prod){
+        if ($prod) {
             // Afficher un message de réussite
             $this->addFlash('success', "Votre recherche a retourné " . count($prod) . " résultats.");
         } else {
@@ -88,25 +88,46 @@ class AccueilController extends AbstractController
 
     // Politique de confidentialité : 
 
-     #[Route('/confid', name: 'app_confid')]
-     public function politique_confidentialite(): Response
-     {
-         return $this->render('accueil/confid.html.twig', [
-             'controller_name' => 'AccueilController',
-         ]);
-     }
- 
+    #[Route('/confid', name: 'app_confid')]
+    public function politique_confidentialite(): Response
+    {
+        return $this->render('accueil/confid.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
     // Mentions légales :
- 
-     #[Route('/mentions', name: 'app_mentions')]
-     public function mentions_legales(): Response
-     {
-         return $this->render('accueil/mentions.html.twig', [
-             'controller_name' => 'AccueilController',
-         ]);
+
+    #[Route('/mentions', name: 'app_mentions')]
+    public function mentions_legales(): Response
+    {
+        return $this->render('accueil/mentions.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
+    // #[Route('/categories', name: 'app_cat')]
+    // public function app_cat(): Response
+    // {
+    //     $cat = $this->categorie->findAll();
+    //     $scat = $this->s_categorie->findAll();
+
+    //     return $this->render('categories/index.html.twig', [
+    //         'controller_name' => 'CategoriesController',
+    //         'cat' => $cat,
+    //         'scat' => $scat,
+    //     ]);
+    // }
+
+    // #[Route('/sous-categories', name: 'app_scat')]
+    // public function app_scat(Request $request): Response
+    // {
+    //     $categorie_id = $request->query->get('id');
+    //     $scat = $this->s_categorie->findBy(['cat' => $categorie_id]);
+
+    //     return $this->render('categories/scat.html.twig', [
+    //         'controller_name' => 'CategoriesController',
+    //         'scat' => $scat,
+    //     ]);
+    // }
 }
-
-}
-
-
-

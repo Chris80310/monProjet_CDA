@@ -14,9 +14,6 @@
         <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
             {# <a href="/produits/{{s_categories.id}}"> #}
             <a href="{{path('app_scat', {"id" : categorie.id })}}">
-            {# <pre>
-                {{ dump(scats) }}
-            </pre> #}
                 {# <a href="{{categorie.id}}"> #}
                 <div class="card" style="">
                     <img src="{{asset ('assets/img/cat/' ~ categorie.getImgCat())}}" alt="image" srcset="" class="card-img-top img-fluid">
