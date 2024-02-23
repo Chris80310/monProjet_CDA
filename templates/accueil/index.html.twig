@@ -7,14 +7,16 @@
 		<div>
 			<h1 class="">Accueil</h1>
 
+
+
 			<div class="row">
 				{% for cat in categorie %}
-					<div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
+					<div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3 ">
 						<a href="{{path('app_scat', {"id" : cat.id })}}">
-							<div class="card" style="">
-								<img src="{{asset ('assets/img/cat/' ~ cat.getImgCat())}}" alt="image" srcset="" class="card-img-top img-fluid rounded">
+							<div class="card">
+								<img src="{{asset ('assets/img/cat/' ~ cat.getImgCat())}}" alt="image" srcset=""  class="card-img-top img-fluid">
 								<div class="card-body">
-									<h5 class="card-title">{{ cat.getLibelleCat() }}</h5>
+									<h5 class="card-titl text-center">{{ cat.getLibelleCat() }}</h5>
 								</div>
 							</div>
 						</a>
