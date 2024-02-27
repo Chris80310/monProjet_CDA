@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use ApiPlatform\Metadata\ApiResource;
 
 
     // #[ORM\Column(length: 180, unique: true)]
@@ -42,6 +43,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
     // }
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
+#[ApiResource()]
 
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 

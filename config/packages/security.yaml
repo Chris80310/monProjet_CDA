@@ -29,11 +29,11 @@ security:
                 # Pour rediriger l'utilisateur déconnecté, changer:
                 # target: app_any_route
 
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800
-                path: /
-                always_remember_me: true
+            # remember_me:
+            #     secret: '%kernel.secret%'
+            #     lifetime: 604800
+            #     path: /
+            #     always_remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

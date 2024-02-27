@@ -1,0 +1,64 @@
+
+GET http://127.0.0.1:8000/api/produits
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/cats
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/scats
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/api/produits
+Content-Type: application/json
+
+{ 
+    "id": 3,
+    "libelle": "GPU qui envoie",
+    "prix_vente_ht": "399.00",
+    "description": "GPU qui envoie un max jusqu'en 4k",
+    "scat_id": 3,
+    "scat": "\/api\/scats\/3",
+    "fabricant": "\/api\/fabricants\/1",
+    "imgProd": "powercolor-radeon-rx-6700-xt-fighter-12gb-gddr6.jpg",
+    "scatId": 3
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/produits/9
+Content-Type: application/json
+
+###
+
+PATCH http://127.0.0.1:8000/api/produits/10
+Content-Type: application/merge-patch+json
+Accept: application/json
+
+{ 
+    "libelle": "test_patch",
+}
+
+###
+
+PUT http://127.0.0.1:8000/api/produits/10
+Content-Type: application/merge-patch+json
+Accept: application/json
+
+{ 
+    "libelle": "test_put",
+    "prix_vente_ht": "250.00",
+    "description": "AMD RYZEN 7600X Processeur 6 coeurs, 4.70 GHz, 32 Mo, AMD Zen 4, TDP 105 Watts, socket AM5, version bo\u00eete sans ventilateur",
+    "scat_id": 4,
+    "scat": "\/api\/scats\/4",
+    "fabricant": "\/api\/fabricants\/1",
+    "imgProd": "amd-ryzen-5-7600x-boxed.jpg",
+    "prixAchatFourn": "200.00",
+    "prixVenteHt": "250.00",
+    "scatId": 4
+}
