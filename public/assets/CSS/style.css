@@ -57,4 +57,8 @@ h1 {
     /* object-fit: cover = permet le zoom au lieu de l'étirement de l'image */
 }
 
+.container {
+    background-image: url(public/assets/img/background/1689023013-home-player-prime-lifestyle-hero-primary-sm.png);
+}
+
 
