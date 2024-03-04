@@ -4,5 +4,7 @@
 {% endblock %}
 
 {% block body %}
+{{ encore_entry_link_tags('app-react') }}
      <div id="react-app"></div>
+     {{ encore_entry_script_tags('app-react') }}
 {% endblock %}

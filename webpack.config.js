@@ -21,10 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-
     .addEntry('app-react', './react/my_react_app/index.js')
-
-
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -56,10 +53,6 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
     })
-
-    // webpack.config.js
-
-    .addStyleEntry('app', './assets/styles/app.css')
 
     // enables Sass/SCSS support
     //.enableSassLoader()
