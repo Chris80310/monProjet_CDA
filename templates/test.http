@@ -1,0 +1,60 @@
+GET http://127.0.0.1:8000/api/produits
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/produits/10
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/api/produits
+Content-Type: application/json
+
+{
+    "libelle": "test",
+    "description": "carte graphique de la mort qui tue ...",
+    "prix_vente_ht": "499.99",
+    //"img": "https://picsum.photos/300/200",
+    "img": "public/assets/img/produits/sapphire-radeon-rx-7900-xtx-nitro-vapor-x-24gb.jpg",
+    "scat": "/api/sous_categories/1"
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/produits/9
+
+###
+
+PATCH http://127.0.0.1:8000/api/produits/10
+Content-Type: application/merge-patch+json
+Accept: application/json
+
+{
+    "libelle": "modification"
+}
+
+###
+
+
+PUT http://127.0.0.1:8000/api/produits/10
+Content-Type: application/json
+
+{
+    "libelle": "modification3",
+    "description": "aaabbbccc",
+
+    "image": "https://picsum.photos/300/200",
+    "sousCategorie": "/api/sous_categories/1"
+}
+
+
+###
+
+
+GET http://127.0.0.1:8000/api/cats
+
+###
+
+
+http://api.themoviedb.org/3/search/movie?api_key=f33cd318f5135dba306176c13104506a&query=toto

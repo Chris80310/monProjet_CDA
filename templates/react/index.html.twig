@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReactController!
-{% endblock %}
+{# {% block title %}Hello ReactController!
+{% endblock %} #}
 
-{% block body %}
-{{ encore_entry_link_tags('app-react') }}
+{# {% block body %}
+     {{ encore_entry_link_tags('app-react') }}
      <div id="react-app"></div>
      {{ encore_entry_script_tags('app-react') }}
+{% endblock %} #}
+
+{% block body %}
+     {{ encore_entry_link_tags('app_react_cat') }}
+     {# <div id="react-app"></div> #}
+     <div id="app_react_cat"></div>
+     {{ encore_entry_script_tags('app_react_cat') }}
 {% endblock %}
+

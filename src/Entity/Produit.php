@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Entity;
-
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,6 +10,9 @@ use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[ApiResource()]
+#[ApiFilter(SearchFilter::class, 
+properties: [ "scat.id" => "exact"] 
+)]
 class Produit
 {
     #[ORM\Id]
