@@ -1,12 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-// import MonPremierComposant from "./jsx/MonPremierComposant";
-import Cat from "./jsx/Cat";
+import React from 'react';
+import App from './jsx/App';
 
-//ReactDOM.createRoot(document.getElementById('react-app')).render(
-ReactDOM.createRoot(document.getElementById('app_react_cat')).render(
+import ReactDOM from 'react-dom/client';
+// import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+// import MonPremierComposant from "./jsx/MonPremierComposant";
+// import Cat from "./jsx/Cat";
+
+
+ReactDOM.createRoot(document.getElementById('app_react')).render(
     <React.StrictMode>
-        {/* <MonPremierComposant /> */}
-        <Cat />
+        <BrowserRouter>
+            {/* <MonPremierComposant /> */}
+            <App />
+            {/* <Cat /> */}
+        </BrowserRouter>
     </React.StrictMode>,
 )

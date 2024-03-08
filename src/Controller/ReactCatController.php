@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReactCatController extends AbstractController
 {
-    #[Route('/react/cat', name: 'app_react_cat')]
+    #[Route('/react/{react_route}', name: 'app_react')]
     public function index(): Response
     {
         return $this->render('react/index.html.twig', [
